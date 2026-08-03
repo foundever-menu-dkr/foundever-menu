@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Menu Déjeuner | Foundever</title>
+    <style>
+        :root {
+            --fd-indigo: #4b4bf9;
+            --fd-midnight: #09092d;
+            --fd-white: #ffffff;
+            --fd-light-grey: #f3f3f7;
+            --fd-mint: #8bf0bb;
+            --fd-coral: #ff8d96;
+            --fd-lemon: #f9ef77;
+            --fd-lavender: #bfa1ff;
+            --fd-indigo-20: rgba(75,75,249,0.15);
+            --fd-indigo-40: rgba(75,75,249,0.35);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--fd-midnight);
+            color: var(--fd-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--fd-midnight); }
+        ::-webkit-scrollbar-thumb { background: var(--fd-indigo); border-radius: 3px; }
+
+        /* ══════ HERO ══════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: radial-gradient(ellipse at 50% 0%, rgba(75,75,249,0.25) 0%, transparent 70%), var(--fd-midnight);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(139,240,187,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--fd-indigo-20);
+            border: 1px solid var(--fd-indigo-40);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--fd-mint);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge .dot {
+            width: 8px; height: 8px;
+            background: var(--fd-mint);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity:1; transform:scale(1); }
+            50% { opacity:0.5; transform:scale(1.3); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--fd-white) 0%, var(--fd-mint) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.65);
+            max-width: 500px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(139,240,187,0.1);
+            border: 1px solid rgba(139,240,187,0.25);
+            color: var(--fd-mint);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.8rem;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg { width: 24px; height: 24px; stroke: rgba(255,255,255,0.35); }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* ══════ HOW BANNER ══════ */
+        .how-banner {
+            background: linear-gradient(135deg, rgba(75,75,249,0.15) 0%, rgba(139,240,187,0.08) 100%);
+            border-bottom: 1px solid rgba(75,75,249,0.15);
+            padding: 1.5rem 1rem;
+        }
+
+        .how-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .how-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+        }
+
+        .step-num {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--fd-indigo);
+            color: var(--fd-white);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .step-text { color: rgba(255,255,255,0.8); }
+        .step-text strong { color: var(--fd-mint); }
+
+        .how-arrow { color: rgba(255,255,255,0.2); font-size: 1.2rem; }
+
+        /* ══════ NAV ══════ */
+        .nav-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(9,9,45,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(75,75,249,0.2);
+        }
+
+        .nav-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-scroll {
+            display: flex;
+            gap: 6px;
+            padding: 0.7rem 1rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            flex: 1;
+        }
+
+        .nav-scroll::-webkit-scrollbar { display: none; }
+
+        .nav-arrow {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 40px;
+            display: flex; align-items: center; justify-content: center;
+            background: transparent;
+            border: none;
+            color: var(--fd-white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 2;
+            transition: var(--transition);
+            opacity: 0.6;
+        }
+
+        .nav-arrow:hover { opacity: 1; color: var(--fd-mint); }
+        .nav-arrow.left { left: 0; background: linear-gradient(90deg, rgba(9,9,45,0.95) 60%, transparent); }
+        .nav-arrow.right { right: 0; background: linear-gradient(-90deg, rgba(9,9,45,0.95) 60%, transparent); }
+
+        .nav-tab {
+            padding: 7px 14px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            white-space: nowrap;
+            border: 1px solid rgba(75,75,249,0.25);
+            background: transparent;
+            color: rgba(255,255,255,0.65);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: var(--fd-indigo);
+            color: var(--fd-white);
+            border-color: var(--fd-indigo);
+        }
+
+        .nav-tab.nav-order {
+            background: var(--fd-mint);
+            color: var(--fd-midnight);
+            border-color: var(--fd-mint);
+            font-weight: 700;
+        }
+
+        .nav-tab.nav-order:hover { background: #6fe8a8; }
+
+        /* ══════ SECTIONS ══════ */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header .subtitle {
+            color: var(--fd-mint);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .section-divider {
+            width: 60px; height: 3px;
+            background: var(--fd-indigo);
+            border-radius: 3px;
+            margin: 1rem auto 0;
+        }
+
+        /* ══════ INSTRUCTION CARD ══════ */
+        .instruction-card {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            background: rgba(139,240,187,0.06);
+            border: 1px solid rgba(139,240,187,0.2);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: glowPulse 3s infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(139,240,187,0); }
+            50% { box-shadow: 0 0 20px 0 rgba(139,240,187,0.08); }
+        }
+
+        .instruction-icon { font-size: 2rem; flex-shrink: 0; }
+
+        .instruction-text h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--fd-mint);
+            margin-bottom: 4px;
+        }
+
+        .instruction-text p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+        }
+
+        /* ══════ MENU CARDS ══════ */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .menu-card {
+            background: rgba(75,75,249,0.06);
+            border: 1px solid rgba(75,75,249,0.15);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover {
+            border-color: var(--fd-indigo);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(75,75,249,0.15);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(75,75,249,0.1);
+            background: rgba(75,75,249,0.08);
+        }
+
+        .card-header .emoji { font-size: 1.6rem; }
+        .card-header h3 { font-size: 1.1rem; font-weight: 700; }
+        .card-header .partner { font-size: 0.78rem; color: var(--fd-mint); font-weight: 500; }
+        .card-body { padding: 1.25rem 1.5rem; }
+
+        .menu-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--radius-sm);
+        }
+
+        .menu-item:last-child { border-bottom: none; }
+        .menu-item:hover { background: rgba(139,240,187,0.06); }
+
+        .menu-item.selected {
+            background: rgba(139,240,187,0.12);
+            border-color: rgba(139,240,187,0.2);
+        }
+
+        .item-check {
+            width: 22px; height: 22px; min-width: 22px;
+            border-radius: 6px;
+            border: 2px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            margin-top: 2px;
+            transition: var(--transition);
+            font-size: 0.7rem;
+            color: transparent;
+        }
+
+        .menu-item.selected .item-check {
+            background: var(--fd-mint);
+            border-color: var(--fd-mint);
+            color: var(--fd-midnight);
+        }
+
+        .item-info h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 2px; }
+        .item-info p { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.4; }
+
+        .item-qty {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .menu-item.selected .item-qty { opacity: 1; }
+
+        .qty-btn {
+            width: 26px; height: 26px;
+            border-radius: 6px;
+            border: 1px solid rgba(139,240,187,0.3);
+            background: transparent;
+            color: var(--fd-mint);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+
+        .qty-btn:hover { background: rgba(139,240,187,0.15); }
+
+        .qty-val {
+            font-size: 0.85rem; font-weight: 700;
+            min-width: 20px; text-align: center;
+            color: var(--fd-mint);
+        }
+
+        .note-badge {
+            display: inline-block;
+            background: rgba(249,239,119,0.15);
+            color: var(--fd-lemon);
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 50px;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ══════ BOISSONS ══════ */
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 10px;
+        }
+
+        .drink-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: rgba(75,75,249,0.06);
+            border: 1px solid rgba(75,75,249,0.12);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .drink-item:hover { border-color: var(--fd-indigo); }
+
+        .drink-item.selected {
+            background: rgba(139,240,187,0.1);
+            border-color: var(--fd-mint);
+        }
+
+        .drink-item .d-check {
+            width: 18px; height: 18px; min-width: 18px;
+            border-radius: 5px;
+            border: 2px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.6rem;
+            transition: var(--transition);
+            color: transparent;
+        }
+
+        .drink-item.selected .d-check {
+            background: var(--fd-mint);
+            border-color: var(--fd-mint);
+            color: var(--fd-midnight);
+        }
+
+        .drink-item span { font-size: 0.88rem; font-weight: 500; }
+
+        /* ══════ ORDER PANEL ══════ */
+        .order-panel {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 200;
+            background: rgba(9,9,45,0.97);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--fd-indigo);
+            padding: 1rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .order-panel.visible { transform: translateY(0); }
+
+        .order-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .order-summary {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .order-count {
+            background: var(--fd-mint);
+            color: var(--fd-midnight);
+            font-weight: 800;
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+        }
+
+        .order-text { font-size: 0.9rem; }
+        .order-text strong { color: var(--fd-mint); }
+
+        .order-actions { display: flex; gap: 8px; }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary { background: var(--fd-indigo); color: var(--fd-white); }
+        .btn-primary:hover { background: #3a3ae0; transform: scale(1.03); }
+
+        .btn-mint { background: var(--fd-mint); color: var(--fd-midnight); }
+        .btn-mint:hover { background: #6fe8a8; transform: scale(1.03); }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--fd-white);
+        }
+
+        .btn-ghost:hover { border-color: var(--fd-coral); color: var(--fd-coral); }
+
+        .btn-lg {
+            padding: 14px 32px;
+            font-size: 1rem;
+        }
+
+        /* ══════ MODAL ══════ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: rgba(9,9,45,0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .modal {
+            background: var(--fd-midnight);
+            border: 1px solid rgba(75,75,249,0.25);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 580px;
+            max-height: 92vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+        .modal .modal-sub {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .recap-box {
+            background: rgba(139,240,187,0.06);
+            border: 1px solid rgba(139,240,187,0.15);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .recap-box h4 {
+            font-size: 0.82rem;
+            color: var(--fd-mint);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .recap-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .recap-item:last-child { border: none; }
+
+        .recap-empty {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        /* Steps in modal */
+        .modal-steps {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .modal-step:last-child { border: none; }
+
+        .ms-num {
+            width: 36px; height: 36px; min-width: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .ms-num.step-copy {
+            background: var(--fd-indigo);
+            color: var(--fd-white);
+        }
+
+        .ms-num.step-form {
+            background: var(--fd-mint);
+            color: var(--fd-midnight);
+        }
+
+        .ms-content h4 {
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .ms-content p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.4);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .close-modal:hover { color: var(--fd-white); }
+
+        /* ══════ TOAST ══════ */
+        .toast {
+            position: fixed;
+            bottom: 2rem; left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--fd-mint);
+            color: var(--fd-midnight);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 400;
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            pointer-events: none;
+        }
+
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* ══════ FOOTER ══════ */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: rgba(255,255,255,0.25);
+            font-size: 0.78rem;
+            border-top: 1px solid rgba(75,75,249,0.08);
+        }
+
+        /* ══════ RESPONSIVE ══════ */
+        @media (max-width: 768px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .drinks-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .order-inner { flex-direction: column; text-align: center; }
+            .order-actions { width: 100%; }
+            .order-actions .btn { flex: 1; justify-content: center; }
+            .modal { padding: 1.5rem; }
+            .how-inner { flex-direction: column; gap: 1rem; }
+            .how-arrow { display: none; }
+        }
+
+        /* ══════ ANIMATIONS ══════ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+    <div class="hero-badge"><span class="dot"></span> Service Déjeuner</div>
+    <h1>Carte Menu<br>Déjeuner</h1>
+    <p>Découvrez de nouvelles saveurs avec nos restaurants partenaires — offert par Foundever à ses visiteurs.</p>
+    <div class="hero-time">🕐 12h30 — 13h30</div>
+    <div class="scroll-indicator">
+        Découvrir le menu
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+</section>
+
+<!-- ═══════ HOW IT WORKS ═══════ -->
+<div class="how-banner">
+    <div class="how-inner">
+        <div class="how-step">
+            <div class="step-num">1</div>
+            <div class="step-text">Parcourez le menu et <strong>cochez vos plats</strong></div>
+        </div>
+        <div class="how-arrow">→</div>
+        <div class="how-step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Copiez</strong> votre récapitulatif</div>
+        </div>
+        <div class="how-arrow">→</div>
+        <div class="how-step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Collez</strong> dans le formulaire et envoyez</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════ NAV ═══════ -->
+<nav class="nav-sticky" id="nav">
+    <div class="nav-wrapper">
+        <button class="nav-arrow left" onclick="scrollNav(-200)">‹</button>
+        <div class="nav-scroll" id="navScroll">
+            <a href="#francais" class="nav-tab">🥐 Éric Kayser</a>
+            <a href="#farid" class="nav-tab">🧆 Farid</a>
+            <a href="#pistaches" class="nav-tab">🌯 Pistaches & Noix</a>
+            <a href="#bebey" class="nav-tab">🇱🇧 Be Bey</a>
+            <a href="#sushi" class="nav-tab">🍱 Allo Sushi</a>
+            <a href="#burger" class="nav-tab">🍔 Bros Kebab</a>
+            <a href="#pizza" class="nav-tab">🍕 Mamma Pizza</a>
+            <a href="#boissons" class="nav-tab">🥤 Boissons</a>
+            <button class="nav-tab nav-order" onclick="openModal()">📋 Commander</button>
+        </div>
+        <button class="nav-arrow right" onclick="scrollNav(200)">›</button>
+    </div>
+</nav>
+
+<!-- ═══════ RESTAURANTS ═══════ -->
+<div class="section" id="restaurants">
+
+    <div class="instruction-card fade-up">
+        <div class="instruction-icon">👆</div>
+        <div class="instruction-text">
+            <h4>Comment commander ?</h4>
+            <p>Cliquez sur un plat pour le sélectionner — une <strong>coche verte ✓</strong> apparaît. Utilisez <strong>+ / −</strong> pour ajuster la quantité. Une fois votre sélection prête, cliquez sur le bouton <strong>"Passer commande"</strong> en bas de l'écran.</p>
+        </div>
+    </div>
+
+    <!-- ÉRIC KAYSER -->
+    <section id="francais" class="fade-up">
+        <div class="section-header">
+            <div class="section-icon">🥐</div>
+            <h2>Éric Kayser</h2>
+            <div class="subtitle">Cuisine Française</div>
+            <div class="section-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="card-header"><span class="emoji">🥗</span><div><h3>Salades & Plats</h3><div class="partner">Éric Kayser</div></div></div>
+                <div class="card-body">
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Salade Caesar"><div class="item-check">✓</div><div class="item-info"><h4>Salade Caesar</h4><p>Filet de poulet, avocat, parmesan, tomate, sauce Caesar</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Salade Tomate Mozzarella"><div class="item-check">✓</div><div class="item-info"><h4>Salade Tomate Mozzarella</h4><p>Tomate, mozzarella, basilic, huile d'olive et mesclun</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Assiette Chawarma"><div class="item-check">✓</div><div class="item-info"><h4>Assiette Chawarma</h4><p>Viande et poulet + accompagnements</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Assiette Brochette Mixte"><div class="item-check">✓</div><div class="item-info"><h4>Assiette Brochette Mixte</h4><p>Viande et poulet + accompagnements</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Nouilles Chinoises"><div class="item-check">✓</div><div class="item-info"><h4>Nouilles Chinoises</h4><p>Avec poulet ou crevettes</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Spaghetti Bolognaise"><div class="item-check">✓</div><div class="item-info"><h4>Spaghetti Bolognaise</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tagliatelles Poulet & Champignon"><div class="item-check">✓</div><div class="item-info"><h4>Tagliatelles Poulet & Champignon</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Club Sandwich"><div class="item-check">✓</div><div class="item-info"><h4>Club Sandwich</h4><p>Poulet ou Saumon</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Sandwich Froid"><div class="item-check">✓</div><div class="item-info"><h4>Sandwich Froid</h4><p>Mixte, Rustique ou Océan</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Sandwich Chaud"><div class="item-check">✓</div><div class="item-info"><h4>Sandwich Chaud</h4><p>Brochette ou Hot Dog Cheesy</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="card-header"><span class="emoji">🍰</span><div><h3>Desserts</h3><div class="partner">Éric Kayser</div></div></div>
+                <div class="card-body">
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Part de Gâteau"><div class="item-check">✓</div><div class="item-info"><h4>Part de Gâteau</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Crêpe au Nutella"><div class="item-check">✓</div><div class="item-info"><h4>Crêpe au Nutella</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Fondant au Chocolat"><div class="item-check">✓</div><div class="item-info"><h4>Fondant au Chocolat</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESTAURANT FARID -->
+    <section id="farid" class="fade-up" style="margin-top:4rem;">
+        <div class="section-header">
+            <div class="section-icon">🧆</div>
+            <h2>Restaurant Farid</h2>
+            <div class="subtitle">Cuisine Orientale</div>
+            <div class="section-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="card-header"><span class="emoji">🍖</span><div><h3>Menu</h3><div class="partner">Restaurant Farid</div></div></div>
+                <div class="card-body">
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Foie de Poulet"><div class="item-check">✓</div><div class="item-info"><h4>Foie de Poulet</h4><p>Sauté au vinaigre de grenadine</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Kellege Halloum"><div class="item-check">✓</div><div class="item-info"><h4>Kellege Halloum</h4><p>Pain libanais farci au fromage Halloum, tomate et menthe</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Kafta (Farid)"><div class="item-check">✓</div><div class="item-info"><h4>Kafta</h4><p>3 brochettes de viande hachée, persil, oignons</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Mouton Farci à l'Oriental"><div class="item-check">✓</div><div class="item-info"><h4>Mouton Farci à l'Oriental</h4><p>Agneau farci avec riz, viande hachée, amandes, pignons de pin</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tagliatelle Carbonara"><div class="item-check">✓</div><div class="item-info"><h4>Tagliatelle Carbonara</h4><p>Jambon de bœuf ou porc, ail, crème, œuf</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Cheeseburger (Farid)"><div class="item-check">✓</div><div class="item-info"><h4>Cheeseburger</h4><p>Servi avec salade de choux et frites</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Paella Espagnole"><div class="item-check">✓</div><div class="item-info"><h4>Paella Espagnole</h4><span class="note-badge">🗓 Mercredi uniquement</span></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Plats Locaux"><div class="item-check">✓</div><div class="item-info"><h4>Plats Locaux</h4><p>Yassa poulet, yassa poisson, riz au poisson</p><span class="note-badge">📋 Selon disponibilité — plat du jour</span></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PISTACHES & NOIX -->
+    <section id="pistaches" class="fade-up" style="margin-top:4rem;">
+        <div class="section-header">
+            <div class="section-icon">🌯</div>
+            <h2>Pistaches & Noix</h2>
+            <div class="subtitle">Cuisine Orientale</div>
+            <div class="section-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="card-header"><span class="emoji">🥙</span><div><h3>Menu</h3><div class="partner">Pistaches & Noix</div></div></div>
+                <div class="card-body">
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Wrap Le Thon"><div class="item-check">✓</div><div class="item-info"><h4>Wrap Le Thon — Crudités</h4><p>Avec frites, pommes sautées ou salade</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Escalope de Poulet Pané"><div class="item-check">✓</div><div class="item-info"><h4>Escalope de Poulet Pané</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Filet de Poisson au Curry"><div class="item-check">✓</div><div class="item-info"><h4>Filet de Poisson au Curry</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BE BEY -->
+    <section id="bebey" class="fade-up" style="margin-top:4rem;">
+        <div class="section-header">
+            <div class="section-icon">🇱🇧</div>
+            <h2>Be Bey</h2>
+            <div class="subtitle">Cuisine Libanaise</div>
+            <div class="section-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="card-header"><span class="emoji">🫓</span><div><h3>Menu</h3><div class="partner">Be Bey</div></div></div>
+                <div class="card-body">
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Sandwich Halloum"><div class="item-check">✓</div><div class="item-info"><h4>Sandwich Halloum</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Taouk"><div class="item-check">✓</div><div class="item-info"><h4>Taouk</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Kafta (Be Bey)"><div class="item-check">✓</div><div class="item-info"><h4>Kafta</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Falafel"><div class="item-check">✓</div><div class="item-info"><h4>Falafel</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Homos"><div class="item-check">✓</div><div class="item-info"><h4>Homos</h4><p>Nature, Spicy ou Pesto</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALLO SUSHI -->
+    <section id="sushi" class="fade-up" style="margin-top:4rem;">
+        <div class="section-header">
+            <div class="section-icon">🍱</div>
+            <h2>Allo Sushi</h2>
+            <div class="subtitle">Cuisine Asiatique</div>
+            <div class="section-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="card-header"><span class="emoji">🍜</span><div><h3>Menu</h3><div class="partner">Allo Sushi</div></div></div>
+                <div class="card-body">
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Riz Cantonais"><div class="item-check">✓</div><div class="item-info"><h4>Riz Cantonais</h4><p>Poulet, Bœuf ou Crevette</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pâte Gratinée"><div class="item-check">✓</div><div class="item-info"><h4>Pâte Gratinée</h4><p>Poulet ou Viande hachée</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pizza Sushi Mozzarella"><div class="item-check">✓</div><div class="item-info"><h4>Pizza Sushi Mozzarella</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Yakitori"><div class="item-check">✓</div><div class="item-info"><h4>Yakitori</h4><p>Brochette de poulet, filet de bœuf ou saumon</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Bœuf Champignon"><div class="item-check">✓</div><div class="item-info"><h4>Bœuf Champignon</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Poulet Curry"><div class="item-check">✓</div><div class="item-info"><h4>Poulet Curry</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pizza Viande Hachée"><div class="item-check">✓</div><div class="item-info"><h4>Pizza Viande Hachée</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BROS KEBAB -->
+    <section id="burger" class="fade-up" style="margin-top:4rem;">
+        <div class="section-header">
+            <div class="section-icon">🍔</div>
+            <h2>Bros Kebab</h2>
+            <div class="subtitle">Burgers & Desserts</div>
+            <div class="section-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="card-header"><span class="emoji">🍔</span><div><h3>Burgers</h3><div class="partner">Bros Kebab</div></div></div>
+                <div class="card-body">
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Chicken Burger"><div class="item-check">✓</div><div class="item-info"><h4>Chicken Burger</h4><p>Poulet pané, salade, mayonnaise et pickles</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Double Cheese Burger + Frites"><div class="item-check">✓</div><div class="item-info"><h4>Double Cheese Burger + Frites</h4><p>Double viande hachée, sauce burger, cheddar, salades, tomates, pickles</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Cheese Burger + Frites"><div class="item-check">✓</div><div class="item-info"><h4>Cheese Burger + Frites</h4><p>Viande hachée, sauce burger, cheddar, salade, tomates, pickles</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="card-header"><span class="emoji">🍮</span><div><h3>Desserts</h3><div class="partner">Bros Kebab</div></div></div>
+                <div class="card-body">
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pita Nutella Banane"><div class="item-check">✓</div><div class="item-info"><h4>Pita Nutella Banane</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tiramisu Pistache"><div class="item-check">✓</div><div class="item-info"><h4>Tiramisu Pistache</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tiramisu Ikram"><div class="item-check">✓</div><div class="item-info"><h4>Tiramisu Ikram</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAMMA PIZZA -->
+    <section id="pizza" class="fade-up" style="margin-top:4rem;">
+        <div class="section-header">
+            <div class="section-icon">🍕</div>
+            <h2>Mamma Pizza</h2>
+            <div class="subtitle">Pizzeria — ouvre à partir de 12h</div>
+            <div class="section-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="card-header"><span class="emoji">🍕</span><div><h3>Pizzas</h3><div class="partner">Mamma Pizza</div></div></div>
+                <div class="card-body">
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Margharita"><div class="item-check">✓</div><div class="item-info"><h4>Margharita</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Diavola"><div class="item-check">✓</div><div class="item-info"><h4>Diavola</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Carciofo"><div class="item-check">✓</div><div class="item-info"><h4>Carciofo</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Felicita"><div class="item-check">✓</div><div class="item-info"><h4>Felicita</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Quattro Formaggi"><div class="item-check">✓</div><div class="item-info"><h4>Quattro Formaggi</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tartuffo"><div class="item-check">✓</div><div class="item-info"><h4>Tartuffo</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOISSONS -->
+    <section id="boissons" class="fade-up" style="margin-top:4rem;">
+        <div class="section-header">
+            <div class="section-icon">🥤</div>
+            <h2>Boissons, Jus & Eau</h2>
+            <div class="subtitle">Rafraîchissements</div>
+            <div class="section-divider"></div>
+        </div>
+        <div class="drinks-grid">
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Coca Cola"><div class="d-check">✓</div><span>🥤 Coca Cola</span></div>
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Coca Zéro"><div class="d-check">✓</div><span>🥤 Coca Zéro</span></div>
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Sprite"><div class="d-check">✓</div><span>🥤 Sprite</span></div>
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Schweppes Agrumes"><div class="d-check">✓</div><span>🍊 Schweppes</span></div>
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Eau Plate"><div class="d-check">✓</div><span>💧 Eau Plate</span></div>
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Eau Gazeuse"><div class="d-check">✓</div><span>💧 Eau Gazeuse</span></div>
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Bissap"><div class="d-check">✓</div><span>🌺 Bissap</span></div>
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Jus d'Ananas"><div class="d-check">✓</div><span>🍍 Jus d'Ananas</span></div>
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Jus de Bouye"><div class="d-check">✓</div><span>🥛 Jus de Bouye</span></div>
+            <div class="drink-item" onclick="toggleDrink(this)" data-name="Jus Cocktail"><div class="d-check">✓</div><span>🍹 Jus Cocktail</span></div>
+        </div>
+    </section>
+
+</div>
+
+<!-- ═══════ ORDER PANEL ═══════ -->
+<div class="order-panel" id="orderPanel">
+    <div class="order-inner">
+        <div class="order-summary">
+            <div class="order-count" id="orderCount">0</div>
+            <div class="order-text"><strong id="orderLabel">0 article</strong> sélectionné(s)</div>
+        </div>
+        <div class="order-actions">
+            <button class="btn btn-ghost" onclick="clearAll()">✕ Effacer</button>
+            <button class="btn btn-mint" onclick="openModal()">📋 Passer commande</button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════ MODAL ═══════ -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <button class="close-modal" onclick="closeModal()">✕</button>
+        <h2>📋 Votre commande</h2>
+        <p class="modal-sub">Suivez les 2 étapes ci-dessous pour finaliser votre commande</p>
+
+        <!-- Recap -->
+        <div class="recap-box" id="recapBox"></div>
+
+        <!-- Step-by-step -->
+        <div class="modal-steps">
+            <div class="modal-step">
+                <div class="ms-num step-copy">1</div>
+                <div class="ms-content">
+                    <h4>Copiez votre récapitulatif</h4>
+                    <p>Cliquez sur le bouton ci-dessous pour copier votre sélection dans le presse-papier.</p>
+                    <button class="btn btn-primary" onclick="copyRecap()">📋 Copier ma commande</button>
+                </div>
+            </div>
+            <div class="modal-step">
+                <div class="ms-num step-form">2</div>
+                <div class="ms-content">
+                    <h4>Remplissez le formulaire</h4>
+                    <p>Le formulaire s'ouvre dans un nouvel onglet. Collez votre commande dans le champ <strong>"Commande"</strong> puis envoyez.</p>
+                    <a class="btn btn-mint btn-lg" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=s8gWf-_woUWqgZ1ckMuLpfaxFBIgibNOumlMEruJD45UMklTVk1KMlNTWUdYMVFLTTEwOVo4MklJSS4u" target="_blank" rel="noopener">🚀 Ouvrir le formulaire</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════ TOAST ═══════ -->
+<div class="toast" id="toast">✓ Copié !</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+    <p>Carte Menu Déjeuner — Foundever © 2026</p>
+    <p style="margin-top:4px;">Venez découvrir de nouvelles saveurs !</p>
+    <p style="margin-top:12px;"><small>Powered by EverGPT</small></p>
+</footer>
+
+<script>
+    let selectedItems = {};
+    let selectedDrinks = new Set();
+
+    function scrollNav(delta) {
+        document.getElementById('navScroll').scrollBy({ left: delta, behavior: 'smooth' });
+    }
+
+    function toggleItem(el) {
+        if (event && event.target.classList.contains('qty-btn')) return;
+        const name = el.dataset.name;
+        el.classList.toggle('selected');
+        if (el.classList.contains('selected')) {
+            selectedItems[name] = 1;
+            el.querySelector('.qty-val').textContent = '1';
+        } else {
+            delete selectedItems[name];
+        }
+        updatePanel();
+    }
+
+    function changeQty(e, btn, delta) {
+        e.stopPropagation();
+        e.preventDefault();
+        const item = btn.closest('.menu-item');
+        const name = item.dataset.name;
+        if (!item.classList.contains('selected')) return;
+        let qty = (selectedItems[name] || 1) + delta;
+        if (qty < 1) {
+            item.classList.remove('selected');
+            delete selectedItems[name];
+        } else {
+            selectedItems[name] = qty;
+            item.querySelector('.qty-val').textContent = qty;
+        }
+        updatePanel();
+    }
+
+    function toggleDrink(el) {
+        const name = el.dataset.name;
+        el.classList.toggle('selected');
+        if (el.classList.contains('selected')) {
+            selectedDrinks.add(name);
+        } else {
+            selectedDrinks.delete(name);
+        }
+        updatePanel();
+    }
+
+    function updatePanel() {
+        const total = Object.values(selectedItems).reduce((a, b) => a + b, 0) + selectedDrinks.size;
+        document.getElementById('orderCount').textContent = total;
+        document.getElementById('orderLabel').textContent = total + (total > 1 ? ' articles' : ' article');
+        document.getElementById('orderPanel').classList.toggle('visible', total > 0);
+    }
+
+    function clearAll() {
+        document.querySelectorAll('.menu-item.selected').forEach(el => {
+            el.classList.remove('selected');
+            el.querySelector('.qty-val').textContent = '1';
+        });
+        document.querySelectorAll('.drink-item.selected').forEach(el => el.classList.remove('selected'));
+        selectedItems = {};
+        selectedDrinks = new Set();
+        updatePanel();
+    }
+
+    function buildRecapText() {
+        let lines = [];
+        lines.push('COMMANDE DÉJEUNER FOUNDEVER');
+        lines.push('');
+        if (Object.keys(selectedItems).length > 0) {
+            lines.push('Plats :');
+            for (const [item, qty] of Object.entries(selectedItems)) {
+                lines.push('• ' + item + ' x' + qty);
+            }
+        }
+        if (selectedDrinks.size > 0) {
+            lines.push('');
+            lines.push('Boissons :');
+            selectedDrinks.forEach(d => lines.push('• ' + d));
+        }
+        return lines.join('\n');
+    }
+
+    function openModal() {
+        const recap = document.getElementById('recapBox');
+        let html = '';
+        if (Object.keys(selectedItems).length > 0) {
+            html += '<h4>🍽️ Plats</h4>';
+            for (const [name, qty] of Object.entries(selectedItems)) {
+                html += '<div class="recap-item"><span>' + name + '</span><span>x' + qty + '</span></div>';
+            }
+        }
+        if (selectedDrinks.size > 0) {
+            html += '<h4 style="margin-top:12px;">🥤 Boissons</h4>';
+            selectedDrinks.forEach(d => {
+                html += '<div class="recap-item"><span>' + d + '</span><span>x1</span></div>';
+            });
+        }
+        if (Object.keys(selectedItems).length === 0 && selectedDrinks.size === 0) {
+            html = '<p class="recap-empty">Aucun article sélectionné. Retournez au menu pour cocher vos plats.</p>';
+        }
+        recap.innerHTML = html;
+        document.getElementById('modalOverlay').classList.add('show');
+    }
+
+    function closeModal() {
+        document.getElementById('modalOverlay').classList.remove('show');
+    }
+
+    function copyRecap() {
+        const text = buildRecapText();
+        navigator.clipboard.writeText(text).then(function() {
+            showToast('✓ Commande copiée — collez dans le formulaire !');
+        }).catch(function() {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast('✓ Commande copiée — collez dans le formulaire !');
+        });
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.nav-tab:not(.nav-order)').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.nav-tab:not(.nav-order)').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+        if (e.target === e.currentTarget) closeModal();
+    });
+</script>
+
+</body>
+</html>
