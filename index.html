@@ -35,7 +35,6 @@
         ::-webkit-scrollbar-track { background: var(--fd-midnight); }
         ::-webkit-scrollbar-thumb { background: var(--fd-indigo); border-radius: 3px; }
 
-        /* ══════ HERO ══════ */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -135,7 +134,6 @@
             50% { transform: translateY(8px); }
         }
 
-        /* ══════ HOW BANNER ══════ */
         .how-banner {
             background: linear-gradient(135deg, rgba(75,75,249,0.15) 0%, rgba(139,240,187,0.08) 100%);
             border-bottom: 1px solid rgba(75,75,249,0.15);
@@ -175,7 +173,6 @@
 
         .how-arrow { color: rgba(255,255,255,0.2); font-size: 1.2rem; }
 
-        /* ══════ NAV ══════ */
         .nav-sticky {
             position: sticky;
             top: 0;
@@ -253,7 +250,6 @@
 
         .nav-tab.nav-order:hover { background: #6fe8a8; }
 
-        /* ══════ SECTIONS ══════ */
         .section {
             max-width: 1100px;
             margin: 0 auto;
@@ -286,7 +282,6 @@
             margin: 1rem auto 0;
         }
 
-        /* ══════ INSTRUCTION CARD ══════ */
         .instruction-card {
             max-width: 700px;
             margin: 0 auto 3rem;
@@ -320,7 +315,6 @@
             line-height: 1.5;
         }
 
-        /* ══════ MENU CARDS ══════ */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -436,7 +430,6 @@
             font-weight: 500;
         }
 
-        /* ══════ BOISSONS ══════ */
         .drinks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -480,7 +473,6 @@
 
         .drink-item span { font-size: 0.88rem; font-weight: 500; }
 
-        /* ══════ ORDER PANEL ══════ */
         .order-panel {
             position: fixed;
             bottom: 0; left: 0; right: 0;
@@ -554,12 +546,8 @@
 
         .btn-ghost:hover { border-color: var(--fd-coral); color: var(--fd-coral); }
 
-        .btn-lg {
-            padding: 14px 32px;
-            font-size: 1rem;
-        }
+        .btn-lg { padding: 14px 32px; font-size: 1rem; }
 
-        /* ══════ MODAL ══════ */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -600,7 +588,7 @@
             border-radius: var(--radius-sm);
             padding: 1rem 1.25rem;
             margin-bottom: 1.5rem;
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
         }
 
@@ -611,15 +599,26 @@
             font-weight: 700;
         }
 
+        .recap-restaurant {
+            font-size: 0.75rem;
+            color: var(--fd-indigo);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(75,75,249,0.15);
+        }
+
+        .recap-restaurant:first-child { margin-top: 0; }
+
         .recap-item {
             display: flex;
             justify-content: space-between;
             font-size: 0.85rem;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding: 3px 0;
         }
-
-        .recap-item:last-child { border: none; }
 
         .recap-empty {
             color: rgba(255,255,255,0.35);
@@ -627,10 +626,7 @@
             font-style: italic;
         }
 
-        /* Steps in modal */
-        .modal-steps {
-            margin-bottom: 1.5rem;
-        }
+        .modal-steps { margin-bottom: 1.5rem; }
 
         .modal-step {
             display: flex;
@@ -651,15 +647,8 @@
             flex-shrink: 0;
         }
 
-        .ms-num.step-copy {
-            background: var(--fd-indigo);
-            color: var(--fd-white);
-        }
-
-        .ms-num.step-form {
-            background: var(--fd-mint);
-            color: var(--fd-midnight);
-        }
+        .ms-num.step-copy { background: var(--fd-indigo); color: var(--fd-white); }
+        .ms-num.step-form { background: var(--fd-mint); color: var(--fd-midnight); }
 
         .ms-content h4 {
             font-size: 0.92rem;
@@ -686,7 +675,6 @@
 
         .close-modal:hover { color: var(--fd-white); }
 
-        /* ══════ TOAST ══════ */
         .toast {
             position: fixed;
             bottom: 2rem; left: 50%;
@@ -704,7 +692,6 @@
 
         .toast.show { transform: translateX(-50%) translateY(0); }
 
-        /* ══════ FOOTER ══════ */
         footer {
             text-align: center;
             padding: 3rem 1rem;
@@ -713,7 +700,6 @@
             border-top: 1px solid rgba(75,75,249,0.08);
         }
 
-        /* ══════ RESPONSIVE ══════ */
         @media (max-width: 768px) {
             .menu-grid { grid-template-columns: 1fr; }
             .drinks-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
@@ -725,7 +711,6 @@
             .how-arrow { display: none; }
         }
 
-        /* ══════ ANIMATIONS ══════ */
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
@@ -740,7 +725,6 @@
 </head>
 <body>
 
-<!-- ═══════ HERO ═══════ -->
 <section class="hero">
     <div class="hero-badge"><span class="dot"></span> Service Déjeuner</div>
     <h1>Carte Menu<br>Déjeuner</h1>
@@ -752,7 +736,6 @@
     </div>
 </section>
 
-<!-- ═══════ HOW IT WORKS ═══════ -->
 <div class="how-banner">
     <div class="how-inner">
         <div class="how-step">
@@ -772,7 +755,6 @@
     </div>
 </div>
 
-<!-- ═══════ NAV ═══════ -->
 <nav class="nav-sticky" id="nav">
     <div class="nav-wrapper">
         <button class="nav-arrow left" onclick="scrollNav(-200)">‹</button>
@@ -791,7 +773,6 @@
     </div>
 </nav>
 
-<!-- ═══════ RESTAURANTS ═══════ -->
 <div class="section" id="restaurants">
 
     <div class="instruction-card fade-up">
@@ -814,24 +795,24 @@
             <div class="menu-card">
                 <div class="card-header"><span class="emoji">🥗</span><div><h3>Salades & Plats</h3><div class="partner">Éric Kayser</div></div></div>
                 <div class="card-body">
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Salade Caesar"><div class="item-check">✓</div><div class="item-info"><h4>Salade Caesar</h4><p>Filet de poulet, avocat, parmesan, tomate, sauce Caesar</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Salade Tomate Mozzarella"><div class="item-check">✓</div><div class="item-info"><h4>Salade Tomate Mozzarella</h4><p>Tomate, mozzarella, basilic, huile d'olive et mesclun</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Assiette Chawarma"><div class="item-check">✓</div><div class="item-info"><h4>Assiette Chawarma</h4><p>Viande et poulet + accompagnements</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Assiette Brochette Mixte"><div class="item-check">✓</div><div class="item-info"><h4>Assiette Brochette Mixte</h4><p>Viande et poulet + accompagnements</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Nouilles Chinoises"><div class="item-check">✓</div><div class="item-info"><h4>Nouilles Chinoises</h4><p>Avec poulet ou crevettes</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Spaghetti Bolognaise"><div class="item-check">✓</div><div class="item-info"><h4>Spaghetti Bolognaise</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tagliatelles Poulet & Champignon"><div class="item-check">✓</div><div class="item-info"><h4>Tagliatelles Poulet & Champignon</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Club Sandwich"><div class="item-check">✓</div><div class="item-info"><h4>Club Sandwich</h4><p>Poulet ou Saumon</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Sandwich Froid"><div class="item-check">✓</div><div class="item-info"><h4>Sandwich Froid</h4><p>Mixte, Rustique ou Océan</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Sandwich Chaud"><div class="item-check">✓</div><div class="item-info"><h4>Sandwich Chaud</h4><p>Brochette ou Hot Dog Cheesy</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Salade Caesar" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Salade Caesar</h4><p>Filet de poulet, avocat, parmesan, tomate, sauce Caesar</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Salade Tomate Mozzarella" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Salade Tomate Mozzarella</h4><p>Tomate, mozzarella, basilic, huile d'olive et mesclun</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Assiette Chawarma" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Assiette Chawarma</h4><p>Viande et poulet + accompagnements</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Assiette Brochette Mixte" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Assiette Brochette Mixte</h4><p>Viande et poulet + accompagnements</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Nouilles Chinoises" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Nouilles Chinoises</h4><p>Avec poulet ou crevettes</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Spaghetti Bolognaise" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Spaghetti Bolognaise</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tagliatelles Poulet & Champignon" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Tagliatelles Poulet & Champignon</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Club Sandwich" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Club Sandwich</h4><p>Poulet ou Saumon</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Sandwich Froid" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Sandwich Froid</h4><p>Mixte, Rustique ou Océan</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Sandwich Chaud" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Sandwich Chaud</h4><p>Brochette ou Hot Dog Cheesy</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
                 </div>
             </div>
             <div class="menu-card">
                 <div class="card-header"><span class="emoji">🍰</span><div><h3>Desserts</h3><div class="partner">Éric Kayser</div></div></div>
                 <div class="card-body">
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Part de Gâteau"><div class="item-check">✓</div><div class="item-info"><h4>Part de Gâteau</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Crêpe au Nutella"><div class="item-check">✓</div><div class="item-info"><h4>Crêpe au Nutella</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Fondant au Chocolat"><div class="item-check">✓</div><div class="item-info"><h4>Fondant au Chocolat</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Part de Gâteau" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Part de Gâteau</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Crêpe au Nutella" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Crêpe au Nutella</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Fondant au Chocolat" data-resto="Éric Kayser"><div class="item-check">✓</div><div class="item-info"><h4>Fondant au Chocolat</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
                 </div>
             </div>
         </div>
@@ -839,24 +820,19 @@
 
     <!-- RESTAURANT FARID -->
     <section id="farid" class="fade-up" style="margin-top:4rem;">
-        <div class="section-header">
-            <div class="section-icon">🧆</div>
-            <h2>Restaurant Farid</h2>
-            <div class="subtitle">Cuisine Orientale</div>
-            <div class="section-divider"></div>
-        </div>
+        <div class="section-header"><div class="section-icon">🧆</div><h2>Restaurant Farid</h2><div class="subtitle">Cuisine Orientale</div><div class="section-divider"></div></div>
         <div class="menu-grid">
             <div class="menu-card">
                 <div class="card-header"><span class="emoji">🍖</span><div><h3>Menu</h3><div class="partner">Restaurant Farid</div></div></div>
                 <div class="card-body">
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Foie de Poulet"><div class="item-check">✓</div><div class="item-info"><h4>Foie de Poulet</h4><p>Sauté au vinaigre de grenadine</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Kellege Halloum"><div class="item-check">✓</div><div class="item-info"><h4>Kellege Halloum</h4><p>Pain libanais farci au fromage Halloum, tomate et menthe</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Kafta (Farid)"><div class="item-check">✓</div><div class="item-info"><h4>Kafta</h4><p>3 brochettes de viande hachée, persil, oignons</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Mouton Farci à l'Oriental"><div class="item-check">✓</div><div class="item-info"><h4>Mouton Farci à l'Oriental</h4><p>Agneau farci avec riz, viande hachée, amandes, pignons de pin</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tagliatelle Carbonara"><div class="item-check">✓</div><div class="item-info"><h4>Tagliatelle Carbonara</h4><p>Jambon de bœuf ou porc, ail, crème, œuf</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Cheeseburger (Farid)"><div class="item-check">✓</div><div class="item-info"><h4>Cheeseburger</h4><p>Servi avec salade de choux et frites</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Paella Espagnole"><div class="item-check">✓</div><div class="item-info"><h4>Paella Espagnole</h4><span class="note-badge">🗓 Mercredi uniquement</span></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Plats Locaux"><div class="item-check">✓</div><div class="item-info"><h4>Plats Locaux</h4><p>Yassa poulet, yassa poisson, riz au poisson</p><span class="note-badge">📋 Selon disponibilité — plat du jour</span></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Foie de Poulet" data-resto="Restaurant Farid"><div class="item-check">✓</div><div class="item-info"><h4>Foie de Poulet</h4><p>Sauté au vinaigre de grenadine</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Kellege Halloum" data-resto="Restaurant Farid"><div class="item-check">✓</div><div class="item-info"><h4>Kellege Halloum</h4><p>Pain libanais farci au fromage Halloum, tomate et menthe</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Kafta" data-resto="Restaurant Farid"><div class="item-check">✓</div><div class="item-info"><h4>Kafta</h4><p>3 brochettes de viande hachée, persil, oignons</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Mouton Farci à l'Oriental" data-resto="Restaurant Farid"><div class="item-check">✓</div><div class="item-info"><h4>Mouton Farci à l'Oriental</h4><p>Agneau farci avec riz, viande hachée, amandes, pignons de pin</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tagliatelle Carbonara" data-resto="Restaurant Farid"><div class="item-check">✓</div><div class="item-info"><h4>Tagliatelle Carbonara</h4><p>Jambon de bœuf ou porc, ail, crème, œuf</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Cheeseburger" data-resto="Restaurant Farid"><div class="item-check">✓</div><div class="item-info"><h4>Cheeseburger</h4><p>Servi avec salade de choux et frites</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Paella Espagnole" data-resto="Restaurant Farid"><div class="item-check">✓</div><div class="item-info"><h4>Paella Espagnole</h4><span class="note-badge">🗓 Mercredi uniquement</span></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Plats Locaux" data-resto="Restaurant Farid"><div class="item-check">✓</div><div class="item-info"><h4>Plats Locaux</h4><p>Yassa poulet, yassa poisson, riz au poisson</p><span class="note-badge">📋 Selon disponibilité — plat du jour</span></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
                 </div>
             </div>
         </div>
@@ -864,19 +840,14 @@
 
     <!-- PISTACHES & NOIX -->
     <section id="pistaches" class="fade-up" style="margin-top:4rem;">
-        <div class="section-header">
-            <div class="section-icon">🌯</div>
-            <h2>Pistaches & Noix</h2>
-            <div class="subtitle">Cuisine Orientale</div>
-            <div class="section-divider"></div>
-        </div>
+        <div class="section-header"><div class="section-icon">🌯</div><h2>Pistaches & Noix</h2><div class="subtitle">Cuisine Orientale</div><div class="section-divider"></div></div>
         <div class="menu-grid">
             <div class="menu-card">
                 <div class="card-header"><span class="emoji">🥙</span><div><h3>Menu</h3><div class="partner">Pistaches & Noix</div></div></div>
                 <div class="card-body">
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Wrap Le Thon"><div class="item-check">✓</div><div class="item-info"><h4>Wrap Le Thon — Crudités</h4><p>Avec frites, pommes sautées ou salade</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Escalope de Poulet Pané"><div class="item-check">✓</div><div class="item-info"><h4>Escalope de Poulet Pané</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Filet de Poisson au Curry"><div class="item-check">✓</div><div class="item-info"><h4>Filet de Poisson au Curry</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Wrap Le Thon — Crudités" data-resto="Pistaches & Noix"><div class="item-check">✓</div><div class="item-info"><h4>Wrap Le Thon — Crudités</h4><p>Avec frites, pommes sautées ou salade</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Escalope de Poulet Pané" data-resto="Pistaches & Noix"><div class="item-check">✓</div><div class="item-info"><h4>Escalope de Poulet Pané</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Filet de Poisson au Curry" data-resto="Pistaches & Noix"><div class="item-check">✓</div><div class="item-info"><h4>Filet de Poisson au Curry</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
                 </div>
             </div>
         </div>
@@ -884,21 +855,16 @@
 
     <!-- BE BEY -->
     <section id="bebey" class="fade-up" style="margin-top:4rem;">
-        <div class="section-header">
-            <div class="section-icon">🇱🇧</div>
-            <h2>Be Bey</h2>
-            <div class="subtitle">Cuisine Libanaise</div>
-            <div class="section-divider"></div>
-        </div>
+        <div class="section-header"><div class="section-icon">🇱🇧</div><h2>Be Bey</h2><div class="subtitle">Cuisine Libanaise</div><div class="section-divider"></div></div>
         <div class="menu-grid">
             <div class="menu-card">
                 <div class="card-header"><span class="emoji">🫓</span><div><h3>Menu</h3><div class="partner">Be Bey</div></div></div>
                 <div class="card-body">
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Sandwich Halloum"><div class="item-check">✓</div><div class="item-info"><h4>Sandwich Halloum</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Taouk"><div class="item-check">✓</div><div class="item-info"><h4>Taouk</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Kafta (Be Bey)"><div class="item-check">✓</div><div class="item-info"><h4>Kafta</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Falafel"><div class="item-check">✓</div><div class="item-info"><h4>Falafel</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Homos"><div class="item-check">✓</div><div class="item-info"><h4>Homos</h4><p>Nature, Spicy ou Pesto</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Sandwich Halloum" data-resto="Be Bey"><div class="item-check">✓</div><div class="item-info"><h4>Sandwich Halloum</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Taouk" data-resto="Be Bey"><div class="item-check">✓</div><div class="item-info"><h4>Taouk</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Kafta" data-resto="Be Bey"><div class="item-check">✓</div><div class="item-info"><h4>Kafta</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Falafel" data-resto="Be Bey"><div class="item-check">✓</div><div class="item-info"><h4>Falafel</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Homos" data-resto="Be Bey"><div class="item-check">✓</div><div class="item-info"><h4>Homos</h4><p>Nature, Spicy ou Pesto</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
                 </div>
             </div>
         </div>
@@ -906,23 +872,18 @@
 
     <!-- ALLO SUSHI -->
     <section id="sushi" class="fade-up" style="margin-top:4rem;">
-        <div class="section-header">
-            <div class="section-icon">🍱</div>
-            <h2>Allo Sushi</h2>
-            <div class="subtitle">Cuisine Asiatique</div>
-            <div class="section-divider"></div>
-        </div>
+        <div class="section-header"><div class="section-icon">🍱</div><h2>Allo Sushi</h2><div class="subtitle">Cuisine Asiatique</div><div class="section-divider"></div></div>
         <div class="menu-grid">
             <div class="menu-card">
                 <div class="card-header"><span class="emoji">🍜</span><div><h3>Menu</h3><div class="partner">Allo Sushi</div></div></div>
                 <div class="card-body">
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Riz Cantonais"><div class="item-check">✓</div><div class="item-info"><h4>Riz Cantonais</h4><p>Poulet, Bœuf ou Crevette</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pâte Gratinée"><div class="item-check">✓</div><div class="item-info"><h4>Pâte Gratinée</h4><p>Poulet ou Viande hachée</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pizza Sushi Mozzarella"><div class="item-check">✓</div><div class="item-info"><h4>Pizza Sushi Mozzarella</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Yakitori"><div class="item-check">✓</div><div class="item-info"><h4>Yakitori</h4><p>Brochette de poulet, filet de bœuf ou saumon</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Bœuf Champignon"><div class="item-check">✓</div><div class="item-info"><h4>Bœuf Champignon</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Poulet Curry"><div class="item-check">✓</div><div class="item-info"><h4>Poulet Curry</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pizza Viande Hachée"><div class="item-check">✓</div><div class="item-info"><h4>Pizza Viande Hachée</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Riz Cantonais" data-resto="Allo Sushi"><div class="item-check">✓</div><div class="item-info"><h4>Riz Cantonais</h4><p>Poulet, Bœuf ou Crevette</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pâte Gratinée" data-resto="Allo Sushi"><div class="item-check">✓</div><div class="item-info"><h4>Pâte Gratinée</h4><p>Poulet ou Viande hachée</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pizza Sushi Mozzarella" data-resto="Allo Sushi"><div class="item-check">✓</div><div class="item-info"><h4>Pizza Sushi Mozzarella</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Yakitori" data-resto="Allo Sushi"><div class="item-check">✓</div><div class="item-info"><h4>Yakitori</h4><p>Brochette de poulet, filet de bœuf ou saumon</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Bœuf Champignon" data-resto="Allo Sushi"><div class="item-check">✓</div><div class="item-info"><h4>Bœuf Champignon</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Poulet Curry" data-resto="Allo Sushi"><div class="item-check">✓</div><div class="item-info"><h4>Poulet Curry</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pizza Viande Hachée" data-resto="Allo Sushi"><div class="item-check">✓</div><div class="item-info"><h4>Pizza Viande Hachée</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
                 </div>
             </div>
         </div>
@@ -930,27 +891,22 @@
 
     <!-- BROS KEBAB -->
     <section id="burger" class="fade-up" style="margin-top:4rem;">
-        <div class="section-header">
-            <div class="section-icon">🍔</div>
-            <h2>Bros Kebab</h2>
-            <div class="subtitle">Burgers & Desserts</div>
-            <div class="section-divider"></div>
-        </div>
+        <div class="section-header"><div class="section-icon">🍔</div><h2>Bros Kebab</h2><div class="subtitle">Burgers & Desserts</div><div class="section-divider"></div></div>
         <div class="menu-grid">
             <div class="menu-card">
                 <div class="card-header"><span class="emoji">🍔</span><div><h3>Burgers</h3><div class="partner">Bros Kebab</div></div></div>
                 <div class="card-body">
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Chicken Burger"><div class="item-check">✓</div><div class="item-info"><h4>Chicken Burger</h4><p>Poulet pané, salade, mayonnaise et pickles</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Double Cheese Burger + Frites"><div class="item-check">✓</div><div class="item-info"><h4>Double Cheese Burger + Frites</h4><p>Double viande hachée, sauce burger, cheddar, salades, tomates, pickles</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Cheese Burger + Frites"><div class="item-check">✓</div><div class="item-info"><h4>Cheese Burger + Frites</h4><p>Viande hachée, sauce burger, cheddar, salade, tomates, pickles</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Chicken Burger" data-resto="Bros Kebab"><div class="item-check">✓</div><div class="item-info"><h4>Chicken Burger</h4><p>Poulet pané, salade, mayonnaise et pickles</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Double Cheese Burger + Frites" data-resto="Bros Kebab"><div class="item-check">✓</div><div class="item-info"><h4>Double Cheese Burger + Frites</h4><p>Double viande hachée, sauce burger, cheddar, salades, tomates, pickles</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Cheese Burger + Frites" data-resto="Bros Kebab"><div class="item-check">✓</div><div class="item-info"><h4>Cheese Burger + Frites</h4><p>Viande hachée, sauce burger, cheddar, salade, tomates, pickles</p></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
                 </div>
             </div>
             <div class="menu-card">
                 <div class="card-header"><span class="emoji">🍮</span><div><h3>Desserts</h3><div class="partner">Bros Kebab</div></div></div>
                 <div class="card-body">
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pita Nutella Banane"><div class="item-check">✓</div><div class="item-info"><h4>Pita Nutella Banane</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tiramisu Pistache"><div class="item-check">✓</div><div class="item-info"><h4>Tiramisu Pistache</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tiramisu Ikram"><div class="item-check">✓</div><div class="item-info"><h4>Tiramisu Ikram</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Pita Nutella Banane" data-resto="Bros Kebab"><div class="item-check">✓</div><div class="item-info"><h4>Pita Nutella Banane</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tiramisu Pistache" data-resto="Bros Kebab"><div class="item-check">✓</div><div class="item-info"><h4>Tiramisu Pistache</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tiramisu Ikram" data-resto="Bros Kebab"><div class="item-check">✓</div><div class="item-info"><h4>Tiramisu Ikram</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
                 </div>
             </div>
         </div>
@@ -958,22 +914,17 @@
 
     <!-- MAMMA PIZZA -->
     <section id="pizza" class="fade-up" style="margin-top:4rem;">
-        <div class="section-header">
-            <div class="section-icon">🍕</div>
-            <h2>Mamma Pizza</h2>
-            <div class="subtitle">Pizzeria — ouvre à partir de 12h</div>
-            <div class="section-divider"></div>
-        </div>
+        <div class="section-header"><div class="section-icon">🍕</div><h2>Mamma Pizza</h2><div class="subtitle">Pizzeria — ouvre à partir de 12h</div><div class="section-divider"></div></div>
         <div class="menu-grid">
             <div class="menu-card">
                 <div class="card-header"><span class="emoji">🍕</span><div><h3>Pizzas</h3><div class="partner">Mamma Pizza</div></div></div>
                 <div class="card-body">
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Margharita"><div class="item-check">✓</div><div class="item-info"><h4>Margharita</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Diavola"><div class="item-check">✓</div><div class="item-info"><h4>Diavola</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Carciofo"><div class="item-check">✓</div><div class="item-info"><h4>Carciofo</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Felicita"><div class="item-check">✓</div><div class="item-info"><h4>Felicita</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Quattro Formaggi"><div class="item-check">✓</div><div class="item-info"><h4>Quattro Formaggi</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tartuffo"><div class="item-check">✓</div><div class="item-info"><h4>Tartuffo</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Margharita" data-resto="Mamma Pizza"><div class="item-check">✓</div><div class="item-info"><h4>Margharita</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Diavola" data-resto="Mamma Pizza"><div class="item-check">✓</div><div class="item-info"><h4>Diavola</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Carciofo" data-resto="Mamma Pizza"><div class="item-check">✓</div><div class="item-info"><h4>Carciofo</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Felicita" data-resto="Mamma Pizza"><div class="item-check">✓</div><div class="item-info"><h4>Felicita</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Quattro Formaggi" data-resto="Mamma Pizza"><div class="item-check">✓</div><div class="item-info"><h4>Quattro Formaggi</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+                    <div class="menu-item" onclick="toggleItem(this)" data-name="Tartuffo" data-resto="Mamma Pizza"><div class="item-check">✓</div><div class="item-info"><h4>Tartuffo</h4></div><div class="item-qty"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
                 </div>
             </div>
         </div>
@@ -981,12 +932,7 @@
 
     <!-- BOISSONS -->
     <section id="boissons" class="fade-up" style="margin-top:4rem;">
-        <div class="section-header">
-            <div class="section-icon">🥤</div>
-            <h2>Boissons, Jus & Eau</h2>
-            <div class="subtitle">Rafraîchissements</div>
-            <div class="section-divider"></div>
-        </div>
+        <div class="section-header"><div class="section-icon">🥤</div><h2>Boissons, Jus & Eau</h2><div class="subtitle">Rafraîchissements</div><div class="section-divider"></div></div>
         <div class="drinks-grid">
             <div class="drink-item" onclick="toggleDrink(this)" data-name="Coca Cola"><div class="d-check">✓</div><span>🥤 Coca Cola</span></div>
             <div class="drink-item" onclick="toggleDrink(this)" data-name="Coca Zéro"><div class="d-check">✓</div><span>🥤 Coca Zéro</span></div>
@@ -1003,7 +949,7 @@
 
 </div>
 
-<!-- ═══════ ORDER PANEL ═══════ -->
+<!-- ORDER PANEL -->
 <div class="order-panel" id="orderPanel">
     <div class="order-inner">
         <div class="order-summary">
@@ -1017,17 +963,13 @@
     </div>
 </div>
 
-<!-- ═══════ MODAL ═══════ -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
         <button class="close-modal" onclick="closeModal()">✕</button>
         <h2>📋 Votre commande</h2>
         <p class="modal-sub">Suivez les 2 étapes ci-dessous pour finaliser votre commande</p>
-
-        <!-- Recap -->
         <div class="recap-box" id="recapBox"></div>
-
-        <!-- Step-by-step -->
         <div class="modal-steps">
             <div class="modal-step">
                 <div class="ms-num step-copy">1</div>
@@ -1049,10 +991,8 @@
     </div>
 </div>
 
-<!-- ═══════ TOAST ═══════ -->
 <div class="toast" id="toast">✓ Copié !</div>
 
-<!-- ═══════ FOOTER ═══════ -->
 <footer>
     <p>Carte Menu Déjeuner — Foundever © 2026</p>
     <p style="margin-top:4px;">Venez découvrir de nouvelles saveurs !</p>
@@ -1060,7 +1000,8 @@
 </footer>
 
 <script>
-    let selectedItems = {};
+    // State: items now store restaurant info
+    let selectedItems = {}; // { "Salade Caesar": { qty: 1, resto: "Éric Kayser" }, ... }
     let selectedDrinks = new Set();
 
     function scrollNav(delta) {
@@ -1070,9 +1011,10 @@
     function toggleItem(el) {
         if (event && event.target.classList.contains('qty-btn')) return;
         const name = el.dataset.name;
+        const resto = el.dataset.resto;
         el.classList.toggle('selected');
         if (el.classList.contains('selected')) {
-            selectedItems[name] = 1;
+            selectedItems[name] = { qty: 1, resto: resto };
             el.querySelector('.qty-val').textContent = '1';
         } else {
             delete selectedItems[name];
@@ -1086,12 +1028,12 @@
         const item = btn.closest('.menu-item');
         const name = item.dataset.name;
         if (!item.classList.contains('selected')) return;
-        let qty = (selectedItems[name] || 1) + delta;
+        let qty = (selectedItems[name].qty || 1) + delta;
         if (qty < 1) {
             item.classList.remove('selected');
             delete selectedItems[name];
         } else {
-            selectedItems[name] = qty;
+            selectedItems[name].qty = qty;
             item.querySelector('.qty-val').textContent = qty;
         }
         updatePanel();
@@ -1109,7 +1051,7 @@
     }
 
     function updatePanel() {
-        const total = Object.values(selectedItems).reduce((a, b) => a + b, 0) + selectedDrinks.size;
+        const total = Object.values(selectedItems).reduce((a, b) => a + b.qty, 0) + selectedDrinks.size;
         document.getElementById('orderCount').textContent = total;
         document.getElementById('orderLabel').textContent = total + (total > 1 ? ' articles' : ' article');
         document.getElementById('orderPanel').classList.toggle('visible', total > 0);
@@ -1126,42 +1068,71 @@
         updatePanel();
     }
 
+    // Group items by restaurant
+    function groupByRestaurant() {
+        const groups = {};
+        for (const [name, data] of Object.entries(selectedItems)) {
+            if (!groups[data.resto]) groups[data.resto] = [];
+            groups[data.resto].push({ name: name, qty: data.qty });
+        }
+        return groups;
+    }
+
     function buildRecapText() {
+        const groups = groupByRestaurant();
         let lines = [];
         lines.push('COMMANDE DÉJEUNER FOUNDEVER');
+        lines.push('═══════════════════════════');
         lines.push('');
-        if (Object.keys(selectedItems).length > 0) {
-            lines.push('Plats :');
-            for (const [item, qty] of Object.entries(selectedItems)) {
-                lines.push('• ' + item + ' x' + qty);
+
+        const restoNames = Object.keys(groups);
+        if (restoNames.length > 0) {
+            for (const resto of restoNames) {
+                lines.push('📍 ' + resto.toUpperCase());
+                for (const item of groups[resto]) {
+                    lines.push('  • ' + item.name + ' x' + item.qty);
+                }
+                lines.push('');
             }
         }
+
         if (selectedDrinks.size > 0) {
+            lines.push('🥤 BOISSONS');
+            selectedDrinks.forEach(d => lines.push('  • ' + d));
             lines.push('');
-            lines.push('Boissons :');
-            selectedDrinks.forEach(d => lines.push('• ' + d));
         }
+
+        lines.push('═══════════════════════════');
         return lines.join('\n');
     }
 
     function openModal() {
         const recap = document.getElementById('recapBox');
+        const groups = groupByRestaurant();
         let html = '';
-        if (Object.keys(selectedItems).length > 0) {
-            html += '<h4>🍽️ Plats</h4>';
-            for (const [name, qty] of Object.entries(selectedItems)) {
-                html += '<div class="recap-item"><span>' + name + '</span><span>x' + qty + '</span></div>';
+
+        const restoNames = Object.keys(groups);
+        if (restoNames.length > 0) {
+            html += '<h4>🍽️ Plats par restaurant</h4>';
+            for (const resto of restoNames) {
+                html += '<div class="recap-restaurant">📍 ' + resto + '</div>';
+                for (const item of groups[resto]) {
+                    html += '<div class="recap-item"><span>' + item.name + '</span><span>x' + item.qty + '</span></div>';
+                }
             }
         }
+
         if (selectedDrinks.size > 0) {
-            html += '<h4 style="margin-top:12px;">🥤 Boissons</h4>';
+            html += '<div class="recap-restaurant" style="margin-top:16px;">🥤 Boissons</div>';
             selectedDrinks.forEach(d => {
                 html += '<div class="recap-item"><span>' + d + '</span><span>x1</span></div>';
             });
         }
-        if (Object.keys(selectedItems).length === 0 && selectedDrinks.size === 0) {
+
+        if (restoNames.length === 0 && selectedDrinks.size === 0) {
             html = '<p class="recap-empty">Aucun article sélectionné. Retournez au menu pour cocher vos plats.</p>';
         }
+
         recap.innerHTML = html;
         document.getElementById('modalOverlay').classList.add('show');
     }
