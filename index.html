@@ -5,644 +5,1136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carte Menu Déjeuner | Foundever</title>
 <style>
-:root{
---fd-indigo:#4b4bf9;
---fd-midnight:#09092d;
---fd-white:#ffffff;
---fd-light-grey:#f3f3f7;
---fd-lemon:#f9ef77;
---fd-coral:#ff8d96;
---fd-lavender:#bfa1ff;
---fd-mint:#8bf0bb;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-background:var(--fd-midnight);
-color:var(--fd-white);
-font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-line-height:1.6;
-overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none;}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/* ===== HERO ===== */
-#hero{
-min-height:100vh;
-display:flex;flex-direction:column;align-items:center;justify-content:center;
-text-align:center;padding:2rem 1rem 3rem;
-background:linear-gradient(160deg,var(--fd-midnight) 0%,#1a1a4e 50%,var(--fd-indigo) 100%);
-position:relative;overflow:hidden;
+:root {
+  --fd-midnight: #09092D;
+  --fd-indigo: #4444F9;
+  --fd-white: #FFFFFF;
+  --fd-stone: #F3F3F7;
+  --fd-stone-mid: #E7E7EC;
+  --fd-green: #8CF0BC;
+  --fd-error: #EA5D5A;
+  --fd-yellow: #F6F567;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 2px 16px rgba(9,9,45,.07);
+  --font: 'Inter', 'Calibri', Arial, sans-serif;
 }
-#hero::before{
-content:'';position:absolute;width:600px;height:600px;
-background:radial-gradient(circle,rgba(75,75,249,.25) 0%,transparent 70%);
-top:-100px;right:-150px;pointer-events:none;
-}
-.logo{position:absolute;top:1.5rem;left:1.5rem;height:32px;filter:brightness(0) invert(1);opacity:.85;}
-.badge{
-display:inline-block;background:rgba(75,75,249,.25);border:1px solid rgba(75,75,249,.5);
-padding:.35rem 1rem;border-radius:999px;font-size:.8rem;letter-spacing:.5px;
-color:var(--fd-mint);margin-bottom:1.5rem;
-}
-#hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.15;margin-bottom:1rem;}
-#hero h1 span{display:block;color:var(--fd-mint);}
-#hero p.subtitle{max-width:540px;color:rgba(255,255,255,.7);font-size:1.05rem;margin-bottom:.75rem;}
-.time-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.08);padding:.4rem .9rem;border-radius:999px;font-size:.85rem;margin-bottom:2rem;}
-.cta-group{display:flex;flex-direction:column;align-items:center;gap:.75rem;margin-top:.5rem;}
-.btn-main{
-background:var(--fd-mint);color:var(--fd-midnight);font-weight:700;
-padding:.75rem 2rem;border-radius:999px;font-size:1rem;
-transition:transform .2s,box-shadow .2s;cursor:pointer;border:none;
-}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(139,240,187,.35);}
-.scroll-arrow{font-size:1.5rem;opacity:.5;animation:bounce 2s infinite;}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
-/* ===== STEPS ===== */
-#steps{padding:3rem 1rem;text-align:center;}
-.steps-row{
-display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;max-width:800px;margin:auto;
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: var(--font);
+  background: var(--fd-stone);
+  color: var(--fd-midnight);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
-.step-card{
-background:rgba(75,75,249,.1);border:1px solid rgba(75,75,249,.2);border-radius:16px;
-padding:1.5rem 1.2rem;flex:1 1 180px;max-width:220px;
-}
-.step-num{
-display:inline-flex;align-items:center;justify-content:center;
-width:36px;height:36px;border-radius:50%;
-background:var(--fd-indigo);font-weight:800;font-size:.95rem;margin-bottom:.75rem;
-}
-.step-card p{font-size:.88rem;color:rgba(255,255,255,.75);}
-.step-arrow{font-size:1.4rem;color:var(--fd-indigo);flex-shrink:0;}
 
-/* ===== TAB BAR ===== */
-#tab-bar{
-position:sticky;top:0;z-index:100;
-background:rgba(9,9,45,.92);backdrop-filter:blur(12px);
-border-bottom:1px solid rgba(75,75,249,.15);
-padding:.5rem 0;
+/* ── HERO ── */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--fd-midnight) 0%, #161246 50%, #222166 100%);
+  color: var(--fd-white);
+  text-align: center;
+  padding: 60px 20px 50px;
+  overflow: hidden;
 }
-.tab-scroll-wrap{display:flex;align-items:center;max-width:900px;margin:auto;padding:0 .25rem;}
-.tab-arrow{
-background:none;border:none;color:var(--fd-white);font-size:1.4rem;cursor:pointer;
-padding:.25rem;opacity:.5;flex-shrink:0;
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(68,68,249,.18) 0%, transparent 70%);
+  top: -200px; right: -150px;
+  border-radius: 50%;
+  pointer-events: none;
 }
-.tab-arrow:hover{opacity:1;}
-.tab-container{
-display:flex;gap:.35rem;overflow-x:auto;scroll-behavior:smooth;
-padding:.25rem .25rem;flex:1;
--ms-overflow-style:none;scrollbar-width:none;
+.hero-logo {
+  width: 140px;
+  margin-bottom: 24px;
+  filter: brightness(0) invert(1);
 }
-.tab-container::-webkit-scrollbar{display:none;}
-.tab-btn{
-white-space:nowrap;padding:.45rem .9rem;border-radius:999px;border:1px solid rgba(255,255,255,.1);
-background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);font-size:.82rem;cursor:pointer;
-transition:all .2s;flex-shrink:0;
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(6px);
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
 }
-.tab-btn:hover{background:rgba(75,75,249,.15);color:var(--fd-white);}
-.tab-btn.active{background:var(--fd-indigo);color:var(--fd-white);border-color:var(--fd-indigo);font-weight:600;}
+.hero h1 {
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+.hero h1 span { color: var(--fd-indigo); }
+.hero p.sub {
+  max-width: 560px;
+  margin: 0 auto 10px;
+  font-size: 1.05rem;
+  opacity: .85;
+  font-weight: 400;
+}
+.hero .time-badge {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--fd-indigo);
+  padding: 7px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: .92rem;
+}
+.scroll-hint {
+  margin-top: 28px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255,255,255,.6);
+  font-size: .82rem;
+  text-decoration: none;
+  transition: color .3s;
+}
+.scroll-hint:hover { color: #fff; }
+.scroll-hint span.arrow {
+  font-size: 1.4rem;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(6px); }
+}
 
-/* ===== HELP BUBBLE ===== */
-.help-bubble{
-max-width:700px;margin:2rem auto 1rem;
-display:flex;gap:1rem;align-items:flex-start;
-background:rgba(75,75,249,.08);border:1px solid rgba(75,75,249,.18);
-border-radius:16px;padding:1.25rem 1.5rem;
+/* ── STEPS ── */
+.steps-bar {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  padding: 28px 20px;
+  background: var(--fd-white);
+  border-bottom: 1px solid var(--fd-stone-mid);
+  flex-wrap: wrap;
 }
-.help-bubble .icon{font-size:1.6rem;flex-shrink:0;margin-top:.15rem;}
-.help-bubble h3{font-size:.95rem;color:var(--fd-mint);margin-bottom:.3rem;}
-.help-bubble p{font-size:.83rem;color:rgba(255,255,255,.6);line-height:1.55;}
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--fd-midnight);
+}
+.step-num {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--fd-indigo);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: .85rem;
+  flex-shrink: 0;
+}
+.step-arrow { color: var(--fd-indigo); font-size: 1.1rem; }
 
-/* ===== MENU SECTIONS ===== */
-.menu-section{
-max-width:800px;margin:auto;padding:1rem 1rem 2rem;
+/* ── TAB NAV ── */
+.tab-nav-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--fd-white);
+  border-bottom: 2px solid var(--fd-stone-mid);
+  display: flex;
+  align-items: center;
 }
-.menu-section:last-of-type{padding-bottom:6rem;}
+.tab-scroll-btn {
+  flex-shrink: 0;
+  width: 36px;
+  background: var(--fd-white);
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: var(--fd-indigo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.tab-nav {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  scrollbar-width: none;
+}
+.tab-nav::-webkit-scrollbar { display:none; }
+.tab-nav a {
+  flex-shrink: 0;
+  padding: 14px 18px;
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 600;
+  color: #666;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all .25s;
+}
+.tab-nav a:hover,
+.tab-nav a.active {
+  color: var(--fd-indigo);
+  border-bottom-color: var(--fd-indigo);
+}
 
-.restaurant-header{
-text-align:center;padding:2.5rem 1rem 1.5rem;
-scroll-margin-top:70px;
+/* ── INSTRUCTIONS ── */
+.instructions {
+  max-width: 700px;
+  margin: 28px auto;
+  padding: 0 20px;
 }
-.restaurant-header .emoji{font-size:2.5rem;margin-bottom:.5rem;display:block;}
-.restaurant-header h2{font-size:1.5rem;font-weight:800;}
-.restaurant-header .cuisine{color:var(--fd-mint);font-size:.85rem;margin-top:.25rem;}
+.instructions details {
+  background: var(--fd-white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.instructions summary {
+  padding: 16px 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.instructions summary::before { content:'👆'; }
+.instructions details[open] summary { border-bottom: 1px solid var(--fd-stone-mid); }
+.instructions .inst-body { padding: 16px 20px; font-size: .92rem; color:#555; }
 
-/* Divider between restaurants */
-.menu-section+.menu-section{border-top:1px solid rgba(75,75,249,.12);}
+/* ── SECTION ── */
+.menu-section { max-width: 800px; margin: 0 auto 36px; padding: 0 16px; }
+.section-header {
+  text-align: center;
+  padding: 34px 20px 18px;
+}
+.section-emoji { font-size: 2.6rem; }
+.section-header h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 6px 0 2px;
+}
+.section-header .cuisine-type {
+  font-size: .88rem;
+  color: #777;
+  font-weight: 500;
+}
+.section-header .rest-note {
+  display: inline-block;
+  margin-top: 8px;
+  background: rgba(68,68,249,.08);
+  color: var(--fd-indigo);
+  font-size: .78rem;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 20px;
+}
 
-.menu-category{margin-bottom:2rem;}
-.cat-title{
-display:flex;align-items:center;gap:.5rem;
-font-size:1rem;font-weight:700;color:var(--fd-mint);
-border-bottom:1px solid rgba(139,240,187,.15);padding-bottom:.5rem;margin-bottom:1rem;
+/* ── CATEGORY ── */
+.cat-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 0 8px;
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--fd-indigo);
+  border-bottom: 2px solid var(--fd-indigo);
+  margin-bottom: 10px;
 }
-.cat-title .emoji{font-size:1.2rem;}
-.cat-subtitle{font-size:.75rem;color:rgba(255,255,255,.4);font-weight:400;margin-left:auto;}
+.cat-emoji { font-size: 1.1rem; }
 
-.menu-item{
-display:flex;align-items:center;gap:.75rem;
-background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
-border-radius:12px;padding:.85rem 1rem;margin-bottom:.5rem;
-cursor:pointer;transition:all .2s;position:relative;
+/* ── ITEM CARD ── */
+.item-card {
+  display: flex;
+  align-items: center;
+  background: var(--fd-white);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 6px rgba(9,9,45,.05);
+  cursor: pointer;
+  transition: box-shadow .25s, border-color .25s;
+  border: 2px solid transparent;
+  user-select: none;
+  gap: 12px;
 }
-.menu-item:hover{background:rgba(75,75,249,.08);border-color:rgba(75,75,249,.2);}
-.menu-item.selected{background:rgba(139,240,187,.07);border-color:rgba(139,240,187,.25);}
-.menu-item .check{
-width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.15);
-display:flex;align-items:center;justify-content:center;
-font-size:.75rem;color:transparent;transition:all .2s;flex-shrink:0;
-}
-.menu-item.selected .check{
-background:var(--fd-mint);border-color:var(--fd-mint);color:var(--fd-midnight);
-}
-.item-info{flex:1;min-width:0;}
-.item-name{font-weight:600;font-size:.92rem;}
-.item-desc{font-size:.78rem;color:rgba(255,255,255,.45);margin-top:.15rem;}
-.item-note{font-size:.75rem;color:var(--fd-lemon);margin-top:.2rem;}
+.item-card:hover { box-shadow: 0 4px 18px rgba(68,68,249,.10); }
+.item-card.selected { border-color: var(--fd-indigo); background: #f4f4ff; }
 
-.qty-ctrl{
-display:flex;align-items:center;gap:.4rem;flex-shrink:0;
+.item-check {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: .85rem;
+  color: transparent;
+  transition: all .25s;
 }
-.qty-btn{
-width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.12);
-background:rgba(255,255,255,.05);color:var(--fd-white);font-size:1rem;
-display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;
+.item-card.selected .item-check {
+  background: var(--fd-indigo);
+  border-color: var(--fd-indigo);
+  color: #fff;
 }
-.qty-btn:hover{background:var(--fd-indigo);border-color:var(--fd-indigo);}
-.qty-val{min-width:20px;text-align:center;font-weight:700;font-size:.9rem;}
+.item-info { flex: 1; min-width: 0; }
+.item-name { font-weight: 700; font-size: .95rem; }
+.item-desc { font-size: .8rem; color: #888; margin-top: 2px; }
+.item-note {
+  display: inline-block;
+  margin-top: 4px;
+  background: #fff3e0;
+  color: #e67e22;
+  font-size: .72rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+}
 
-/* Drinks grid */
-.drinks-grid{
-display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.5rem;
+/* QTY */
+.qty-ctrl {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
 }
-.drinks-grid .menu-item{flex-direction:column;text-align:center;padding:1rem .75rem;gap:.4rem;}
-.drinks-grid .menu-item .check{margin:0 auto;}
-.drinks-grid .item-name{font-size:.85rem;}
+.item-card.selected .qty-ctrl { display: flex; }
+.qty-ctrl button {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fd-indigo);
+  background: #fff;
+  color: var(--fd-indigo);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+}
+.qty-ctrl button:hover { background: var(--fd-indigo); color: #fff; }
+.qty-val {
+  width: 26px;
+  text-align: center;
+  font-weight: 700;
+  font-size: .95rem;
+}
 
-/* ===== FLOATING BAR ===== */
-#floating-bar{
-position:fixed;bottom:0;left:0;right:0;z-index:200;
-background:rgba(9,9,45,.95);backdrop-filter:blur(12px);
-border-top:1px solid rgba(75,75,249,.2);
-padding:.75rem 1.25rem;
-display:flex;align-items:center;justify-content:space-between;
-transform:translateY(100%);transition:transform .3s ease;
+/* ── DRINKS (simple grid) ── */
+.drinks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
 }
-#floating-bar.show{transform:translateY(0);}
-.bar-count{display:flex;align-items:center;gap:.75rem;}
-.count-badge{
-background:var(--fd-indigo);width:38px;height:38px;border-radius:50%;
-display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;
+.drink-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--fd-white);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all .25s;
+  user-select: none;
 }
-.count-text{font-size:.85rem;color:rgba(255,255,255,.6);}
-.bar-actions{display:flex;gap:.5rem;}
-.bar-btn{
-padding:.55rem 1.1rem;border-radius:999px;font-size:.82rem;font-weight:600;
-cursor:pointer;border:none;transition:all .2s;
+.drink-card:hover { box-shadow: 0 4px 14px rgba(68,68,249,.10); }
+.drink-card.selected { border-color: var(--fd-indigo); background: #f4f4ff; }
+.drink-check {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: .75rem;
+  color: transparent;
+  transition: all .25s;
 }
-.bar-btn.clear{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);}
-.bar-btn.clear:hover{background:rgba(255,141,150,.15);color:var(--fd-coral);}
-.bar-btn.order{background:var(--fd-mint);color:var(--fd-midnight);}
-.bar-btn.order:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(139,240,187,.3);}
+.drink-card.selected .drink-check {
+  background: var(--fd-indigo);
+  border-color: var(--fd-indigo);
+  color: #fff;
+}
+.drink-label { font-weight: 600; font-size: .88rem; }
 
-/* ===== MODAL ===== */
-#order-modal{
-position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;
-background:rgba(0,0,0,.6);backdrop-filter:blur(6px);padding:1rem;
+/* ── FLOATING BAR ── */
+.floating-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0; right: 0;
+  background: var(--fd-midnight);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  z-index: 200;
+  transform: translateY(100%);
+  transition: transform .35s;
 }
-#order-modal.open{display:flex;}
-.modal-box{
-background:var(--fd-midnight);border:1px solid rgba(75,75,249,.2);border-radius:20px;
-max-width:520px;width:100%;max-height:85vh;overflow-y:auto;padding:2rem;
-position:relative;
+.floating-bar.visible { transform: translateY(0); }
+.bar-count {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.modal-box h2{font-size:1.2rem;margin-bottom:.25rem;}
-.modal-box .modal-sub{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:1.25rem;}
-.modal-close{
-position:absolute;top:1rem;right:1rem;background:none;border:none;
-color:var(--fd-white);font-size:1.3rem;cursor:pointer;opacity:.5;
+.bar-badge {
+  width: 34px; height: 34px;
+  background: var(--fd-indigo);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
 }
-.modal-close:hover{opacity:1;}
-#order-summary{
-background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-border-radius:12px;padding:1rem;margin-bottom:1.5rem;
-font-size:.85rem;color:rgba(255,255,255,.7);
-white-space:pre-wrap;max-height:200px;overflow-y:auto;
+.bar-label { font-size: .88rem; }
+.bar-actions { display: flex; gap: 10px; }
+.bar-actions button {
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: .88rem;
+  cursor: pointer;
+  border: none;
+  transition: background .2s;
 }
-.modal-steps{display:flex;flex-direction:column;gap:1.25rem;}
-.modal-step{display:flex;gap:1rem;align-items:flex-start;}
-.modal-step .ms-num{
-width:32px;height:32px;border-radius:50%;background:var(--fd-indigo);
-display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;
+.btn-clear {
+  background: rgba(255,255,255,.12);
+  color: #fff;
 }
-.modal-step h4{font-size:.9rem;margin-bottom:.25rem;}
-.modal-step p{font-size:.8rem;color:rgba(255,255,255,.5);}
-.modal-btn{
-display:inline-block;margin-top:.6rem;padding:.55rem 1.2rem;border-radius:999px;
-font-size:.82rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;
+.btn-clear:hover { background: rgba(255,255,255,.22); }
+.btn-order {
+  background: var(--fd-indigo);
+  color: #fff;
 }
-.modal-btn.copy{background:var(--fd-indigo);color:var(--fd-white);}
-.modal-btn.copy:hover{box-shadow:0 4px 16px rgba(75,75,249,.4);}
-.modal-btn.form{background:var(--fd-mint);color:var(--fd-midnight);}
-.modal-btn.form:hover{box-shadow:0 4px 16px rgba(139,240,187,.35);}
+.btn-order:hover { background: #5d5df9; }
 
-/* ===== TOAST ===== */
-#toast{
-position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(20px);
-background:var(--fd-mint);color:var(--fd-midnight);
-padding:.6rem 1.5rem;border-radius:999px;font-weight:700;font-size:.85rem;
-opacity:0;transition:all .3s;pointer-events:none;z-index:400;
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(9,9,45,.55);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
-#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* ===== FOOTER ===== */
-footer{
-text-align:center;padding:2rem 1rem 1.5rem;
-border-top:1px solid rgba(255,255,255,.05);
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--fd-white);
+  border-radius: var(--radius);
+  max-width: 520px;
+  width: 100%;
+  padding: 34px 28px 28px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(9,9,45,.18);
+  max-height: 90vh;
+  overflow-y: auto;
 }
-footer p{font-size:.78rem;color:rgba(255,255,255,.35);margin-bottom:.25rem;}
-footer .powered{font-size:.7rem;color:rgba(255,255,255,.2);margin-top:.75rem;}
+.modal-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #999;
+}
+.modal h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+.modal .modal-sub { font-size: .85rem; color: #777; margin-bottom: 18px; }
+.modal-summary {
+  background: var(--fd-stone);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-size: .88rem;
+  white-space: pre-wrap;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid var(--fd-stone-mid);
+}
+.modal-steps { display: flex; flex-direction: column; gap: 16px; }
+.modal-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.modal-step-num {
+  width: 36px; height: 36px;
+  background: var(--fd-indigo);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.modal-step-content h3 { font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+.modal-step-content p { font-size: .83rem; color: #666; margin-bottom: 8px; }
+.modal-step-content a,
+.modal-step-content button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: .85rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background .2s;
+}
+.btn-copy { background: var(--fd-midnight); color: #fff; }
+.btn-copy:hover { background: #161246; }
+.btn-form { background: var(--fd-indigo); color: #fff; }
+.btn-form:hover { background: #5d5df9; }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:600px){
-  .steps-row{flex-direction:column;}
-  .step-arrow{transform:rotate(90deg);}
-  .modal-box{padding:1.5rem;}
-  .drinks-grid{grid-template-columns:repeat(2,1fr);}
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: var(--fd-midnight);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: .88rem;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .4s;
+  z-index: 400;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── FOOTER ── */
+.site-footer {
+  text-align: center;
+  padding: 36px 20px;
+  background: var(--fd-midnight);
+  color: rgba(255,255,255,.55);
+  font-size: .82rem;
+  margin-top: 20px;
+}
+.site-footer strong { color: #fff; }
+.site-footer .powered {
+  margin-top: 8px;
+  font-size: .75rem;
+  opacity: .5;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .hero { padding: 44px 16px 36px; }
+  .hero h1 { font-size: 1.8rem; }
+  .steps-bar { gap: 10px; }
+  .step-arrow { display: none; }
+  .menu-section { padding: 0 10px; }
+  .floating-bar { padding: 10px 14px; }
+  .bar-actions button { padding: 9px 14px; font-size: .8rem; }
+  .modal { padding: 24px 18px 20px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ===== HERO ===== -->
-<section id="hero">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Foundever_logo.svg" alt="Foundever" class="logo">
-  <div class="badge">Service Déjeuner</div>
-  <h1>Carte Menu<span>Déjeuner</span></h1>
-  <p class="subtitle">Découvrez de nouvelles saveurs avec nos restaurants partenaires — offert par Foundever à ses visiteurs.</p>
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" id="top">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Foundever_logo.svg" alt="Foundever" class="hero-logo">
+  <div class="hero-badge">Service Déjeuner</div>
+  <h1>Carte Menu<span>&nbsp;Déjeuner</span></h1>
+  <p class="sub">Découvrez de nouvelles saveurs avec nos restaurants partenaires — offert par Foundever à ses visiteurs.</p>
   <div class="time-badge">🕐 12h30 — 13h30</div>
-  <div class="cta-group">
-    <a href="#tab-bar" class="btn-main">Découvrir le menu</a>
-    <a href="#tab-bar" class="scroll-arrow">⌄</a>
-  </div>
+  <a href="#nav" class="scroll-hint">
+    Découvrir le menu
+    <span class="arrow">⌄</span>
+  </a>
 </section>
 
-<!-- ===== STEPS ===== -->
-<section id="steps">
-  <div class="steps-row">
-    <div class="step-card"><div class="step-num">1</div><p>Parcourez le menu et cochez vos plats</p></div>
-    <div class="step-arrow">→</div>
-    <div class="step-card"><div class="step-num">2</div><p>Copiez votre récapitulatif</p></div>
-    <div class="step-arrow">→</div>
-    <div class="step-card"><div class="step-num">3</div><p>Collez dans le formulaire et envoyez</p></div>
-  </div>
-</section>
+<!-- ═══════ STEPS ═══════ -->
+<div class="steps-bar">
+  <div class="step-item"><span class="step-num">1</span>Parcourez le menu et cochez vos plats</div>
+  <span class="step-arrow">→</span>
+  <div class="step-item"><span class="step-num">2</span>Copiez votre récapitulatif</div>
+  <span class="step-arrow">→</span>
+  <div class="step-item"><span class="step-num">3</span>Collez dans le formulaire et envoyez</div>
+</div>
 
-<!-- ===== TAB BAR (anchor navigation) ===== -->
-<nav id="tab-bar">
-  <div class="tab-scroll-wrap">
-    <button class="tab-arrow" onclick="scrollTabs(-150)">‹</button>
-    <div class="tab-container" id="tabContainer">
-      <a class="tab-btn active" href="#sec-kayser">🥐 Éric Kayser</a>
-      <a class="tab-btn" href="#sec-farid">🧆 Farid</a>
-      <a class="tab-btn" href="#sec-pistaches">🌯 Pistaches & Noix</a>
-      <a class="tab-btn" href="#sec-bebey">🇱🇧 Be Bey</a>
-      <a class="tab-btn" href="#sec-sushi">🍱 Allo Sushi</a>
-      <a class="tab-btn" href="#sec-bros">🍔 Bros Kebab</a>
-      <a class="tab-btn" href="#sec-pizza">🍕 Mamma Pizza</a>
-      <a class="tab-btn" href="#sec-senegalaise">🍲 La Sénégalaise</a>
-      <a class="tab-btn" href="#sec-boissons">🥤 Boissons</a>
-      <a class="tab-btn" href="#" onclick="event.preventDefault();openModal();">📋 Commander</a>
-    </div>
-    <button class="tab-arrow" onclick="scrollTabs(150)">›</button>
+<!-- ═══════ TAB NAV ═══════ -->
+<div class="tab-nav-wrapper" id="nav">
+  <button class="tab-scroll-btn" onclick="document.querySelector('.tab-nav').scrollBy(-120,0)">‹</button>
+  <div class="tab-nav">
+    <a href="#kayser">🥐 Éric Kayser</a>
+    <a href="#farid">🧆 Farid</a>
+    <a href="#pistaches">🌯 Pistaches & Noix</a>
+    <a href="#bebey">🇱🇧 Be Bey</a>
+    <a href="#sushi">🍱 Allo Sushi</a>
+    <a href="#bros">🍔 Bros Kebab</a>
+    <a href="#pizzapapa">🍕 Pizza Papa</a>
+    <a href="#senegalaise">🍲 La Sénégalaise</a>
+    <a href="#boissons">🥤 Boissons</a>
+    <a href="#commander">📋 Commander</a>
   </div>
-</nav>
+  <button class="tab-scroll-btn" onclick="document.querySelector('.tab-nav').scrollBy(120,0)">›</button>
+</div>
 
-<!-- ===== HELP BUBBLE ===== -->
-<div class="help-bubble">
-  <div class="icon">👆</div>
-  <div>
-    <h3>Comment commander ?</h3>
-    <p>Cliquez sur un plat pour le sélectionner — une coche verte ✓ apparaît. Utilisez + / − pour ajuster la quantité. Une fois votre sélection prête, cliquez sur le bouton "Passer commande" en bas de l'écran.</p>
+<!-- ═══════ INSTRUCTIONS ═══════ -->
+<div class="instructions">
+  <details>
+    <summary>Comment commander ?</summary>
+    <div class="inst-body">Cliquez sur un plat pour le sélectionner — une coche verte ✓ apparaît. Utilisez + / − pour ajuster la quantité. Une fois votre sélection prête, cliquez sur le bouton "Passer commande" en bas de l'écran.</div>
+  </details>
+</div>
+
+<!-- ═══════ ÉRIC KAYSER ═══════ -->
+<div class="menu-section" id="kayser">
+  <div class="section-header">
+    <div class="section-emoji">🥐</div>
+    <h2>Éric Kayser</h2>
+    <div class="cuisine-type">Cuisine Française</div>
+  </div>
+  <div class="cat-title"><span class="cat-emoji">🥗</span>Salades & Plats<span style="margin-left:auto;font-size:.75rem;color:#aaa">Éric Kayser</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Salade Caesar</div><div class="item-desc">Filet de poulet, avocat, parmesan, tomate, sauce Caesar</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Salade Tomate Mozzarella</div><div class="item-desc">Tomate, mozzarella, basilic, huile d'olive et mesclun</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Assiette Chawarma</div><div class="item-desc">Viande et poulet + accompagnements</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Assiette Brochette Mixte</div><div class="item-desc">Viande et poulet + accompagnements</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Nouilles Chinoises</div><div class="item-desc">Avec poulet ou crevettes</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Spaghetti Bolognaise</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Tagliatelles Poulet & Champignon</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Club Sandwich</div><div class="item-desc">Poulet ou Saumon</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Sandwich Froid</div><div class="item-desc">Mixte, Rustique ou Océan</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Sandwich Chaud</div><div class="item-desc">Brochette ou Hot Dog Cheesy</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="cat-title"><span class="cat-emoji">🍰</span>Desserts<span style="margin-left:auto;font-size:.75rem;color:#aaa">Éric Kayser</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Part de Gâteau</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Crêpe au Nutella</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Fondant au Chocolat</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
   </div>
 </div>
 
-<!-- ===== ÉRIC KAYSER ===== -->
-<section class="menu-section" id="sec-kayser">
-  <div class="restaurant-header">
-    <span class="emoji">🥐</span>
-    <h2>Éric Kayser</h2>
-    <div class="cuisine">Cuisine Française</div>
-  </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🥗</span>Salades & Plats<span class="cat-subtitle">Éric Kayser</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Salade Caesar</div><div class="item-desc">Filet de poulet, avocat, parmesan, tomate, sauce Caesar</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Salade Tomate Mozzarella</div><div class="item-desc">Tomate, mozzarella, basilic, huile d'olive et mesclun</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Assiette Chawarma</div><div class="item-desc">Viande et poulet + accompagnements</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Assiette Brochette Mixte</div><div class="item-desc">Viande et poulet + accompagnements</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Nouilles Chinoises</div><div class="item-desc">Avec poulet ou crevettes</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Spaghetti Bolognaise</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Tagliatelles Poulet & Champignon</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Club Sandwich</div><div class="item-desc">Poulet ou Saumon</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Sandwich Froid</div><div class="item-desc">Mixte, Rustique ou Océan</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Sandwich Chaud</div><div class="item-desc">Brochette ou Hot Dog Cheesy</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-  </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🍰</span>Desserts<span class="cat-subtitle">Éric Kayser</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Part de Gâteau</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Crêpe au Nutella</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Fondant au Chocolat</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-  </div>
-</section>
-
-<!-- ===== FARID ===== -->
-<section class="menu-section" id="sec-farid">
-  <div class="restaurant-header">
-    <span class="emoji">🧆</span>
+<!-- ═══════ FARID ═══════ -->
+<div class="menu-section" id="farid">
+  <div class="section-header">
+    <div class="section-emoji">🧆</div>
     <h2>Restaurant Farid</h2>
-    <div class="cuisine">Cuisine Orientale</div>
+    <div class="cuisine-type">Cuisine Orientale</div>
   </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🍖</span>Menu<span class="cat-subtitle">Restaurant Farid</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Foie de Poulet</div><div class="item-desc">Sauté au vinaigre de grenadine</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Kellege Halloum</div><div class="item-desc">Pain libanais farci au fromage Halloum, tomate et menthe</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Kafta</div><div class="item-desc">3 brochettes de viande hachée, persil, oignons</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Mouton Farci à l'Oriental</div><div class="item-desc">Agneau farci avec riz, viande hachée, amandes, pignons de pin</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Tagliatelle Carbonara</div><div class="item-desc">Jambon de bœuf ou porc, ail, crème, œuf</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Cheeseburger</div><div class="item-desc">Servi avec salade de choux et frites</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Paella Espagnole</div><div class="item-note">🗓 Mercredi uniquement</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Plats Locaux</div><div class="item-desc">Yassa poulet, yassa poisson, riz au poisson</div><div class="item-note">📋 Selon disponibilité — plat du jour</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+  <div class="cat-title"><span class="cat-emoji">🍖</span>Menu<span style="margin-left:auto;font-size:.75rem;color:#aaa">Restaurant Farid</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Foie de Poulet</div><div class="item-desc">Sauté au vinaigre de grenadine</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
   </div>
-</section>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Kellege Halloum</div><div class="item-desc">Pain libanais farci au fromage Halloum, tomate et menthe</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Kafta</div><div class="item-desc">3 brochettes de viande hachée, persil, oignons</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Mouton Farci à l'Oriental</div><div class="item-desc">Agneau farci avec riz, viande hachée, amandes, pignons de pin</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Tagliatelle Carbonara</div><div class="item-desc">Jambon de bœuf ou porc, ail, crème, œuf</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Cheeseburger</div><div class="item-desc">Servi avec salade de choux et frites</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Paella Espagnole</div><div class="item-note">🗓 Mercredi uniquement</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Plats Locaux</div><div class="item-desc">Yassa poulet, yassa poisson, riz au poisson</div><div class="item-note">📋 Selon disponibilité — plat du jour</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+</div>
 
-<!-- ===== PISTACHES & NOIX ===== -->
-<section class="menu-section" id="sec-pistaches">
-  <div class="restaurant-header">
-    <span class="emoji">🌯</span>
+<!-- ═══════ PISTACHES & NOIX ═══════ -->
+<div class="menu-section" id="pistaches">
+  <div class="section-header">
+    <div class="section-emoji">🌯</div>
     <h2>Pistaches & Noix</h2>
-    <div class="cuisine">Cuisine Orientale</div>
+    <div class="cuisine-type">Cuisine Orientale</div>
   </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🥙</span>Menu<span class="cat-subtitle">Pistaches & Noix</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Wrap Le Thon — Crudités</div><div class="item-desc">Avec frites, pommes sautées ou salade</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Escalope de Poulet Pané</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Filet de Poisson au Curry</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+  <div class="cat-title"><span class="cat-emoji">🥙</span>Menu<span style="margin-left:auto;font-size:.75rem;color:#aaa">Pistaches & Noix</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Wrap Le Thon — Crudités</div><div class="item-desc">Avec frites, pommes sautées ou salade</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
   </div>
-</section>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Escalope de Poulet Pané</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Filet de Poisson au Curry</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+</div>
 
-<!-- ===== BE BEY ===== -->
-<section class="menu-section" id="sec-bebey">
-  <div class="restaurant-header">
-    <span class="emoji">🇱🇧</span>
+<!-- ═══════ BE BEY ═══════ -->
+<div class="menu-section" id="bebey">
+  <div class="section-header">
+    <div class="section-emoji">🇱🇧</div>
     <h2>Be Bey</h2>
-    <div class="cuisine">Cuisine Libanaise</div>
+    <div class="cuisine-type">Cuisine Libanaise</div>
   </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🫓</span>Menu<span class="cat-subtitle">Be Bey</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Sandwich Halloum</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Taouk</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Kafta</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Falafel</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Homos</div><div class="item-desc">Nature, Spicy ou Pesto</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+  <div class="cat-title"><span class="cat-emoji">🫓</span>Menu<span style="margin-left:auto;font-size:.75rem;color:#aaa">Be Bey</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Sandwich Halloum</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
   </div>
-</section>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Taouk</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Kafta</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Falafel</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Homos</div><div class="item-desc">Nature, Spicy ou Pesto</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+</div>
 
-<!-- ===== ALLO SUSHI ===== -->
-<section class="menu-section" id="sec-sushi">
-  <div class="restaurant-header">
-    <span class="emoji">🍱</span>
+<!-- ═══════ ALLO SUSHI ═══════ -->
+<div class="menu-section" id="sushi">
+  <div class="section-header">
+    <div class="section-emoji">🍱</div>
     <h2>Allo Sushi</h2>
-    <div class="cuisine">Cuisine Asiatique</div>
+    <div class="cuisine-type">Cuisine Asiatique</div>
   </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🍜</span>Menu<span class="cat-subtitle">Allo Sushi</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Riz Cantonais</div><div class="item-desc">Poulet, Bœuf ou Crevette</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Pâte Gratinée</div><div class="item-desc">Poulet ou Viande hachée</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Pizza Sushi Mozzarella</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Yakitori</div><div class="item-desc">Brochette de poulet, filet de bœuf ou saumon</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Bœuf Champignon</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Poulet Curry</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Pizza Viande Hachée</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+  <div class="cat-title"><span class="cat-emoji">🍜</span>Menu<span style="margin-left:auto;font-size:.75rem;color:#aaa">Allo Sushi</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Riz Cantonais</div><div class="item-desc">Poulet, Bœuf ou Crevette</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
   </div>
-</section>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Pâte Gratinée</div><div class="item-desc">Poulet ou Viande hachée</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Pizza Sushi Mozzarella</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Yakitori</div><div class="item-desc">Brochette de poulet, filet de bœuf ou saumon</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Bœuf Champignon</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Poulet Curry</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Pizza Viande Hachée</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+</div>
 
-<!-- ===== BROS KEBAB ===== -->
-<section class="menu-section" id="sec-bros">
-  <div class="restaurant-header">
-    <span class="emoji">🍔</span>
+<!-- ═══════ BROS KEBAB ═══════ -->
+<div class="menu-section" id="bros">
+  <div class="section-header">
+    <div class="section-emoji">🍔</div>
     <h2>Bros Kebab</h2>
-    <div class="cuisine">Burgers & Desserts</div>
+    <div class="cuisine-type">Burgers & Desserts</div>
   </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🍔</span>Burgers<span class="cat-subtitle">Bros Kebab</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Chicken Burger</div><div class="item-desc">Poulet pané, salade, mayonnaise et pickles</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Double Cheese Burger + Frites</div><div class="item-desc">Double viande hachée, sauce burger, cheddar, salades, tomates, pickles</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Cheese Burger + Frites</div><div class="item-desc">Viande hachée, sauce burger, cheddar, salade, tomates, pickles</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+  <div class="cat-title"><span class="cat-emoji">🍔</span>Burgers<span style="margin-left:auto;font-size:.75rem;color:#aaa">Bros Kebab</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Chicken Burger</div><div class="item-desc">Poulet pané, salade, mayonnaise et pickles</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
   </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🍮</span>Desserts<span class="cat-subtitle">Bros Kebab</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Pita Nutella Banane</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Tiramisu Pistache</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Tiramisu Ikram</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Double Cheese Burger + Frites</div><div class="item-desc">Double viande hachée, sauce burger, cheddar, salades, tomates, pickles</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
   </div>
-</section>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Cheese Burger + Frites</div><div class="item-desc">Viande hachée, sauce burger, cheddar, salade, tomates, pickles</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="cat-title"><span class="cat-emoji">🍮</span>Desserts<span style="margin-left:auto;font-size:.75rem;color:#aaa">Bros Kebab</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Pita Nutella Banane</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Tiramisu Pistache</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Tiramisu Ikram</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+</div>
 
-<!-- ===== MAMMA PIZZA ===== -->
-<section class="menu-section" id="sec-pizza">
-  <div class="restaurant-header">
-    <span class="emoji">🍕</span>
-    <h2>Mamma Pizza</h2>
-    <div class="cuisine">Pizzeria — ouvre à partir de 12h</div>
+<!-- ═══════ PIZZA PAPA ═══════ -->
+<div class="menu-section" id="pizzapapa">
+  <div class="section-header">
+    <div class="section-emoji">🍕</div>
+    <h2>Pizza Papa</h2>
+    <div class="cuisine-type">Pizzeria</div>
+    <div class="rest-note">🕐 Ouvert à partir de 12h — Fermé le lundi</div>
+    <div class="rest-note" style="background:rgba(246,245,103,.15);color:#b5a200;margin-top:6px;">📏 Précisez la taille lors de la commande</div>
   </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🍕</span>Pizzas<span class="cat-subtitle">Mamma Pizza</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Margharita</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Diavola</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Carciofo</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Felicita</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Quattro Formaggi</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Tartuffo</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+  <div class="cat-title"><span class="cat-emoji">🍕</span>Pizzas<span style="margin-left:auto;font-size:.75rem;color:#aaa">Pizza Papa</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Margharita</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
   </div>
-</section>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Reine</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Pepperoni</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Poulet BBQ</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Mexicaine</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Veggie</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">4 Fromages</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+</div>
 
-<!-- ===== LA SÉNÉGALAISE (NOUVEAU) ===== -->
-<section class="menu-section" id="sec-senegalaise">
-  <div class="restaurant-header">
-    <span class="emoji">🍲</span>
+<!-- ═══════ LA SÉNÉGALAISE ═══════ -->
+<div class="menu-section" id="senegalaise">
+  <div class="section-header">
+    <div class="section-emoji">🍲</div>
     <h2>La Sénégalaise</h2>
-    <div class="cuisine">Cuisine Sénégalaise</div>
+    <div class="cuisine-type">Cuisine Sénégalaise</div>
   </div>
-  <div class="menu-category">
-    <div class="cat-title"><span class="emoji">🇸🇳</span>Menu<span class="cat-subtitle">La Sénégalaise</span></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Thiebou Dieune</div><div class="item-desc">Riz au poisson — rouge ou blanc</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Thiebou Yapp</div><div class="item-desc">Riz à la viande</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">Yassa</div><div class="item-desc">Poulet ou poisson</div><div class="item-note">📋 Selon disponibilité</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-val">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div></div>
+  <div class="cat-title"><span class="cat-emoji">🇸🇳</span>Menu<span style="margin-left:auto;font-size:.75rem;color:#aaa">La Sénégalaise</span></div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Thiebou Dieune</div><div class="item-desc">Riz au poisson — rouge ou blanc</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
   </div>
-</section>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Thiebou Yapp</div><div class="item-desc">Riz à la viande</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+  <div class="item-card" onclick="toggleItem(this)">
+    <div class="item-check">✓</div>
+    <div class="item-info"><div class="item-name">Yassa</div><div class="item-desc">Poulet ou poisson</div><div class="item-note">📋 Selon disponibilité</div></div>
+    <div class="qty-ctrl"><button onclick="changeQty(event,-1)">−</button><span class="qty-val">1</span><button onclick="changeQty(event,1)">+</button></div>
+  </div>
+</div>
 
-<!-- ===== BOISSONS ===== -->
-<section class="menu-section" id="sec-boissons">
-  <div class="restaurant-header">
-    <span class="emoji">🥤</span>
+<!-- ═══════ BOISSONS ═══════ -->
+<div class="menu-section" id="boissons">
+  <div class="section-header">
+    <div class="section-emoji">🥤</div>
     <h2>Boissons, Jus & Eau</h2>
-    <div class="cuisine">Rafraîchissements</div>
+    <div class="cuisine-type">Rafraîchissements</div>
   </div>
   <div class="drinks-grid">
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">🥤 Coca Cola</div></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">🥤 Coca Zéro</div></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">🥤 Sprite</div></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">🍊 Schweppes</div></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">💧 Eau Plate</div></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">💧 Eau Gazeuse</div></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">🌺 Bissap</div></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">🍍 Jus d'Ananas</div></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">🥛 Jus de Bouye</div></div></div>
-    <div class="menu-item" onclick="toggleItem(this)"><div class="check">✓</div><div class="item-info"><div class="item-name">🍹 Jus Cocktail</div></div></div>
-  </div>
-</section>
-
-<!-- ===== FLOATING BAR ===== -->
-<div id="floating-bar">
-  <div class="bar-count">
-    <div class="count-badge" id="countBadge">0</div>
-    <div class="count-text"><span id="countText">0</span> article sélectionné(s)</div>
-  </div>
-  <div class="bar-actions">
-    <button class="bar-btn clear" onclick="clearAll()">✕ Effacer</button>
-    <button class="bar-btn order" onclick="openModal()">📋 Passer commande</button>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">🥤 Coca Cola</div></div>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">🥤 Coca Zéro</div></div>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">🥤 Sprite</div></div>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">🍊 Schweppes</div></div>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">💧 Eau Plate</div></div>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">💧 Eau Gazeuse</div></div>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">🌺 Bissap</div></div>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">🍍 Jus d'Ananas</div></div>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">🥛 Jus de Bouye</div></div>
+    <div class="drink-card" onclick="toggleDrink(this)"><div class="drink-check">✓</div><div class="drink-label">🍹 Jus Cocktail</div></div>
   </div>
 </div>
 
-<!-- ===== MODAL ===== -->
-<div id="order-modal">
-  <div class="modal-box">
+<!-- ═══════ FLOATING BAR ═══════ -->
+<div class="floating-bar" id="floatingBar">
+  <div class="bar-count">
+    <div class="bar-badge" id="barBadge">0</div>
+    <div class="bar-label" id="barLabel">0 article sélectionné(s)</div>
+  </div>
+  <div class="bar-actions">
+    <button class="btn-clear" onclick="clearAll()">✕ Effacer</button>
+    <button class="btn-order" onclick="openModal()">📋 Passer commande</button>
+  </div>
+</div>
+
+<!-- ═══════ MODAL ═══════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <h2>📋 Votre commande</h2>
     <p class="modal-sub">Suivez les 2 étapes ci-dessous pour finaliser votre commande</p>
-    <div id="order-summary"></div>
+    <div class="modal-summary" id="modalSummary"></div>
     <div class="modal-steps">
       <div class="modal-step">
-        <div class="ms-num">1</div>
-        <div>
-          <h4>Copiez votre récapitulatif</h4>
+        <div class="modal-step-num">1</div>
+        <div class="modal-step-content">
+          <h3>Copiez votre récapitulatif</h3>
           <p>Cliquez sur le bouton ci-dessous pour copier votre sélection dans le presse-papier.</p>
-          <button class="modal-btn copy" onclick="copyOrder()">📋 Copier ma commande</button>
+          <button class="btn-copy" onclick="copySummary()">📋 Copier ma commande</button>
         </div>
       </div>
       <div class="modal-step">
-        <div class="ms-num">2</div>
-        <div>
-          <h4>Remplissez le formulaire</h4>
+        <div class="modal-step-num">2</div>
+        <div class="modal-step-content">
+          <h3>Remplissez le formulaire</h3>
           <p>Le formulaire s'ouvre dans un nouvel onglet. Collez votre commande dans le champ "Commande" puis envoyez.</p>
-          <a class="modal-btn form" href="https://forms.cloud.microsoft/e/55rDYwCxSJ" target="_blank" rel="noopener">🚀 Ouvrir le formulaire</a>
+          <a class="btn-form" href="https://forms.office.com/e/kfQ1kXb00E" target="_blank" rel="noopener">🚀 Ouvrir le formulaire</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== TOAST ===== -->
-<div id="toast">✓ Copié !</div>
+<!-- ═══════ TOAST ═══════ -->
+<div class="toast" id="toast">✓ Copié !</div>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  <p>Carte Menu Déjeuner — Foundever © 2026</p>
-  <p>Venez découvrir de nouvelles saveurs !</p>
-  <p class="powered">Powered by EverGPT</p>
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="site-footer">
+  <div>Carte Menu Déjeuner — <strong>Foundever</strong> © 2026</div>
+  <div>Venez découvrir de nouvelles saveurs !</div>
+  <div class="powered">Powered by EverGPT</div>
 </footer>
 
 <script>
-// ===== TAB SCROLL =====
-function scrollTabs(px){document.getElementById('tabContainer').scrollBy({left:px,behavior:'smooth'});}
-
-// ===== ACTIVE TAB ON SCROLL (Intersection Observer) =====
-const tabLinks=document.querySelectorAll('.tab-btn[href^="#sec-"]');
-const allSections=document.querySelectorAll('.menu-section[id]');
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const id=e.target.id;
-      tabLinks.forEach(t=>{
-        t.classList.toggle('active',t.getAttribute('href')==='#'+id);
-      });
-    }
-  });
-},{rootMargin:'-70px 0px -60% 0px',threshold:0});
-allSections.forEach(s=>observer.observe(s));
-
-// ===== SELECT / QTY =====
-function toggleItem(el){
-  if(el.classList.contains('selected')){
-    el.classList.remove('selected');
-    const v=el.querySelector('.qty-val');
-    if(v) v.textContent='1';
-  } else {
-    el.classList.add('selected');
+/* ── Selection logic ── */
+function toggleItem(card) {
+  if(event.target.closest('.qty-ctrl')) return;
+  card.classList.toggle('selected');
+  if(!card.classList.contains('selected')) {
+    card.querySelector('.qty-val').textContent = '1';
   }
   updateBar();
 }
-function changeQty(e,btn,d){
+
+function toggleDrink(card) {
+  card.classList.toggle('selected');
+  updateBar();
+}
+
+function changeQty(e, delta) {
   e.stopPropagation();
-  const item=btn.closest('.menu-item');
-  const val=item.querySelector('.qty-val');
-  if(!val)return;
-  let n=parseInt(val.textContent)+d;
-  if(n<1)n=1;
-  val.textContent=n;
-  if(!item.classList.contains('selected'))item.classList.add('selected');
+  const card = e.target.closest('.item-card');
+  const val = card.querySelector('.qty-val');
+  let n = parseInt(val.textContent) + delta;
+  if(n < 1) { card.classList.remove('selected'); n = 1; }
+  val.textContent = n;
   updateBar();
 }
 
-// ===== FLOATING BAR =====
-function getSelected(){return document.querySelectorAll('.menu-item.selected');}
-function updateBar(){
-  const sel=getSelected();
-  let total=0;
-  sel.forEach(i=>{const v=i.querySelector('.qty-val');total+=v?parseInt(v.textContent):1;});
-  document.getElementById('countBadge').textContent=total;
-  document.getElementById('countText').textContent=total;
-  document.getElementById('floating-bar').classList.toggle('show',total>0);
-}
-function clearAll(){
-  document.querySelectorAll('.menu-item.selected').forEach(i=>{
-    i.classList.remove('selected');
-    const v=i.querySelector('.qty-val');
-    if(v) v.textContent='1';
+function updateBar() {
+  let count = 0;
+  document.querySelectorAll('.item-card.selected').forEach(c => {
+    count += parseInt(c.querySelector('.qty-val').textContent);
   });
+  count += document.querySelectorAll('.drink-card.selected').length;
+  document.getElementById('barBadge').textContent = count;
+  document.getElementById('barLabel').textContent = count + ' article' + (count > 1 ? 's' : '') + ' sélectionné' + (count > 1 ? 's' : '');
+  document.getElementById('floatingBar').classList.toggle('visible', count > 0);
+}
+
+function clearAll() {
+  document.querySelectorAll('.item-card.selected').forEach(c => {
+    c.classList.remove('selected');
+    c.querySelector('.qty-val').textContent = '1';
+  });
+  document.querySelectorAll('.drink-card.selected').forEach(c => c.classList.remove('selected'));
   updateBar();
 }
 
-// ===== MODAL =====
-function buildSummary(){
-  const sel=getSelected();
-  let lines=[];
-  let currentRestaurant='';
-  sel.forEach(i=>{
-    const sec=i.closest('.menu-section');
-    const rName=sec?sec.querySelector('.restaurant-header h2')?.textContent:'';
-    if(rName&&rName!==currentRestaurant){currentRestaurant=rName;lines.push('\n🍽️ '+rName);}
-    const name=i.querySelector('.item-name')?.textContent||'';
-    const v=i.querySelector('.qty-val');
-    const qty=v?parseInt(v.textContent):1;
-    lines.push('  • '+name+(qty>1?' ×'+qty:''));
+/* ── Build summary ── */
+function buildSummary() {
+  let lines = [];
+  let currentResto = '';
+  document.querySelectorAll('.menu-section').forEach(section => {
+    let sectionLines = [];
+    section.querySelectorAll('.item-card.selected').forEach(card => {
+      const name = card.querySelector('.item-name').textContent;
+      const qty = parseInt(card.querySelector('.qty-val').textContent);
+      sectionLines.push('  • ' + name + (qty > 1 ? ' ×' + qty : ''));
+    });
+    if(section.id === 'boissons') {
+      section.querySelectorAll('.drink-card.selected').forEach(card => {
+        sectionLines.push('  • ' + card.querySelector('.drink-label').textContent.trim());
+      });
+    }
+    if(sectionLines.length) {
+      const h2 = section.querySelector('h2').textContent;
+      lines.push('🍽 ' + h2);
+      lines = lines.concat(sectionLines);
+      lines.push('');
+    }
   });
   return lines.join('\n').trim();
 }
-function openModal(){
-  document.getElementById('order-summary').textContent=buildSummary()||'Aucun plat sélectionné.';
-  document.getElementById('order-modal').classList.add('open');
-}
-function closeModal(){document.getElementById('order-modal').classList.remove('open');}
-document.getElementById('order-modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
-function copyOrder(){
-  const txt=document.getElementById('order-summary').textContent;
-  navigator.clipboard.writeText(txt).then(()=>{
-    const t=document.getElementById('toast');t.classList.add('show');
-    setTimeout(()=>t.classList.remove('show'),2000);
-  });
+/* ── Modal ── */
+function openModal() {
+  const summary = buildSummary();
+  document.getElementById('modalSummary').textContent = summary || 'Aucun article sélectionné.';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function copySummary() {
+  const text = document.getElementById('modalSummary').textContent;
+  navigator.clipboard.writeText(text).then(() => showToast());
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+/* ── Tab highlight on scroll ── */
+const sections = document.querySelectorAll('.menu-section');
+const tabs = document.querySelectorAll('.tab-nav a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      tabs.forEach(t => t.classList.remove('active'));
+      const id = entry.target.id;
+      const tab = document.querySelector('.tab-nav a[href="#' + id + '"]');
+      if(tab) { tab.classList.add('active'); tab.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>
